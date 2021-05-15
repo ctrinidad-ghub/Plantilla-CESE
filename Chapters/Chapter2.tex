@@ -15,7 +15,7 @@ En la figura \ref{fig:diagBloques} se muestra el diagrama en bloques simplificad
 \item Bloques de acondicionamiento de señal y actuación para el bobinado primario y secundario.
 \item Interfaz de usuario: pulsadores, \textit{display} y \textit{buzzer}.
 \item Interfaz serie para impresora.
-\item \textit{Switch} de seguridad. Se utiliza para indicar tapa de seguridad ha sido removida y el operario puede quedar expuesto a altas tensiones.
+\item \textit{Switch} de seguridad. Se utiliza para indicar que la tapa de seguridad ha sido removida y el operario puede quedar expuesto a altas tensiones.
 \item Fuente de alimentación.
 \end{itemize}
 
@@ -37,7 +37,7 @@ A continuación se detalla un resumen de las tareas realizadas en este trabajo:
 \begin{figure}[htpb]
 \centering 
 \includegraphics[width=.8\textwidth]{./Figures/diagBloques.png}
-\caption{Diagrama en bloques del sistema}
+\caption{Diagrama en bloques del sistema.}
 \label{fig:diagBloques}
 \end{figure}
 
@@ -47,7 +47,7 @@ En la figura \ref{fig:FSMSimplificada} se presenta un diagrama de secuencia simp
 \begin{figure}[htpb]
 \centering 
 \includegraphics[width=.8\textwidth]{./Figures/FSMSimplificada.png}
-\caption{Diagrama de secuencia simplificado}
+\caption{Diagrama de secuencia simplificado.}
 \label{fig:FSMSimplificada}
 \end{figure}
 
@@ -103,16 +103,16 @@ A continuación se enumeran los requerimientos consensuados con el cliente:
 	\begin{enumerate}
 	\item Bobinado primario:
 		\begin{enumerate}
-		\item Rango tensión: 100 – 240 V$_{RMS}$
-		\item Rango corriente: 0 – 800 mA$_{RMS}$
+		\item Rango tensión: 100 – 240 V$_{RMS}$.
+		\item Rango corriente: 0 – 800 mA$_{RMS}$.
 		\end{enumerate}
 	\item Bobinado secundario:
 		\begin{enumerate}
-		\item Rango tensión: 0 – 30 V$_{RMS}$
-		\item Rango corriente: 0 – 1500 mA$_{RMS}$
+		\item Rango tensión: 0 – 30 V$_{RMS}$.
+		\item Rango corriente: 0 – 1500 mA$_{RMS}$.
 		\end{enumerate}
-	\item Precisión en la medición de tensión: mejor al 1,5\% (puede variar en base a lo que se pueda conseguir en el mercado)
-	\item Precisión en la medición de corriente: mejor al 4\% (puede variar en base a lo que se pueda conseguir en el mercado)
+	\item Precisión en la medición de tensión: mejor al 1,5\% (puede variar en base a lo que se pueda conseguir en el mercado).
+	\item Precisión en la medición de corriente: mejor al 4\% (puede variar en base a lo que se pueda conseguir en el mercado).
 	\end{enumerate}
 \subsection{Requerimientos funcionales}
 	\begin{enumerate}
@@ -133,6 +133,7 @@ A continuación se enumeran los requerimientos consensuados con el cliente:
 	\item Enviar resultados del ensayo: el dispositivo debe generar un comando POST de HTTP a un servidor (provisto por el cliente) con la información del transformador ensayado en formato JSON.
 	\end{enumerate}
 \subsection{Requerimientos de interfaz de usuario}
+\label{subsec:ReqUsu}
 	\begin{enumerate}
 	\item Sobre la funcionalidad de los pulsadores:
 		\begin{enumerate}
@@ -162,14 +163,14 @@ Para este trabajo se utilizó el kit de desarrollo ESP32-DevKitC \citep{ESP32} d
 \begin{figure}[htpb]
 	\centering
 	\includegraphics[scale=1.2]{./Figures/ESP32DevKit.jpg}
-	\caption{ESP32-DevKitC V1}
+	\caption{ESP32-DevKitC V1.}
 	\label{fig:ESP32DevKitC}
 \end{figure}
 
 \begin{figure}[htpb]
 	\centering
 	\includegraphics[scale=.5]{./Figures/esp32-wroom-32-front-back.jpg}
-	\caption{ESP32-WROOM-32}
+	\caption{ESP32-WROOM-32.}
 	\label{fig:ESP32WROOM}
 \end{figure}
 
@@ -190,7 +191,7 @@ De las especificaciones del módulo ESP32-WROOM-32 se pueden destacar las siguie
 \item Interfaz JTAG.
 \end{itemize}
 
-Dado que el ESP32-DevKitC integra al módulo ESP32-WROOM-32, puede que no todos sus periféricos y entradas salidas de propósito general estén disponibles. 
+Dado que el ESP32-DevKitC integra al módulo ESP32-WROOM-32, puede que no todos sus periféricos y entradas-salidas de propósito general (GPIO por sus siglas en inglés) estén disponibles. 
 
 A continuación se detallan las principales características del kit ESP32-DevKitC:
 \begin{itemize}
@@ -220,13 +221,14 @@ A continuación se listan algunas de las características más destacables del e
 El entorno ESP-IDF no es parte del proyecto del usuario sino que debe ser enlazado por medio de la variable de entorno IDF\_PATH. Esto último ayuda a separar el entorno de desarrollo del proyecto particular del usuario. Para utilizar ESP-IDF se requiere una estructura particular de archivos y carpetas para el proyecto \citep{ESPIDF:CMake_2}. 
 
 \subsection{ESP-Touch y SmartConfig}
+\label{sec:ESPTouch}
 
 Espressif Systems provee la aplicación móvil ESP-Touch \citep{ESPTOUCH} la cual puede ser usada con la librería SmartConfig \citep{SMARTCONFIG} para configurar las credenciales de Wi-Fi en equipos que no posean una interfaz de usuario acorde para insertar esta información. En la figura \ref{fig:EspTouch} se muestra la interfaz de la aplicación ESP-Touch.
 
 \begin{figure}[htpb]
 	\centering
 	\includegraphics[scale=.5]{./Figures/EspTouch.jpeg}
-	\caption{Aplicación Android ESP-Touch}
+	\caption{Aplicación Android ESP-Touch.}
 	\label{fig:EspTouch}
 \end{figure}
 
@@ -240,7 +242,7 @@ Para monitorear las tensiones del bobinado primario y secundario se utilizó el 
 \begin{figure}[htpb]
 	\centering
 	\includegraphics[scale=.3]{./Figures/zmpt101b.jpg}
-	\caption{Módulo sensor de tensión alterna}
+	\caption{Módulo sensor de tensión alterna.}
 	\label{fig:ZMPT101B}
 \end{figure}
 
@@ -249,7 +251,7 @@ Este módulo es un sensor de tensión capaz de medir tensiones alternas de líne
 \begin{figure}[htpb]
 	\centering
 	\includegraphics[scale=1.2]{./Figures/ZMPT101B_waves.png}
-	\caption{Ondas de entrada (Vin) y salida (Vout) del módulo @ Vcc = 5 V}
+	\caption{Ondas de entrada (Vin) y salida (Vout) del módulo @ Vcc = 5 V.}
 	\label{fig:ZMPT101B_waves}
 \end{figure}
 
@@ -273,8 +275,8 @@ Para monitorear las corrientes del bobinado primario y secundario se utilizó el
 
 \begin{figure}[htpb]
 	\centering
-	\includegraphics[scale=.6]{./Figures/ZMCT103C.png}
-	\caption{Módulo sensor de corriente alterna}
+	\includegraphics[scale=.5]{./Figures/ZMCT103C.png}
+	\caption{Módulo sensor de corriente alterna.}
 	\label{fig:ZMCT103C}
 \end{figure}
 
@@ -283,19 +285,19 @@ Este módulo facilita el monitoreo de corriente alternas de hasta 5 A$_{RMS}$. E
 Especificaciones técnicas del módulo: 
 \begin{itemize}
 \item Tensión de alimentación (Vcc): 5-30 V.
-\item Corriente de entrada nominal: 5 A$_{RMS}$
+\item Corriente de entrada nominal: 5 A$_{RMS}$.
 \item Tensión de salida: onda senoidal 2.5 V$_{PICO}$ @ Vcc = 5 V.
 \item Valor medio de la tensión salida: 0 V @ Vcc = 5 V.
 \end{itemize}
 
 \section{Impresora}
-
+\label{sec:Impre}
 Para este trabajo se utilizó una impresora de transferencia térmica modelo E-Class™ Mark III fabricada por Honeywell \citep{printer_b}, ver figura \ref{fig:printer}. Las impresoras por transferencia térmica utilizan una cinta de tinta denominada \textit{Ribbon} que con el calor del cabezal derrite la tinta sobre el papel. Este fenómeno permite imprimir códigos de barras, textos, etc. Estas impresoras son de bajo costo pero ofrecen como desventaja que solo imprimen en blanco y negro.
 
 \begin{figure}[htpb]
 	\centering
 	\includegraphics[scale=0.3]{./Figures/printer.jpeg}
-	\caption{Impresora E-Class™ Mark III modelo E-4204B}
+	\caption{Impresora E-Class™ Mark III modelo E-4204B.}
 	\label{fig:printer}
 \end{figure}
 
@@ -315,13 +317,14 @@ Especificaciones técnicas del modelo E-4204B:
 \end{itemize}
 
 \subsection{Protocolo DPL}
+\label{subsec:ProDPL}
 El protocolo DPL (Datamax-O’Neil \textit{Programming Language}) es un protocolo propietario de la firma Datamax el cual puede ser utilizado para comunicarse con las impresoras E-Class™ Mark III \citep{DPL_man}. Este es un protocolo punto a punto de tipo ASCII basado en la arquitectura maestro/esclavo. La impresora se conecta con el \textit{host} sin intermediarios.
 
 El protocolo está formado por comandos y parámetros asociados a estos comandos. En la tabla \ref{tab:printercmd} se muestran los comandos disponibles.
 
 \begin{table}[htpb]
 \centering
-\caption[Comandos protocolo DPL]{Tipos de comandos protocolo DPL}
+\caption[Comandos protocolo DPL]{Tipos de comandos protocolo DPL.}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{c c c}
 \hline
@@ -341,18 +344,18 @@ ESC (0x1B)  & \begin{tabular}[c]{@{}c@{}}Comando de carga de\\fuente \end{tabula
 En las siguientes secciones se describen los comandos inmediatos y los comandos de sistema ya que fueron los utilizados en este trabajo.
 
 \subsubsection{Comandos inmediatos}
-
+\label{subsubsec:ProDPLCMDIn}
 En la tabla \ref{tab:printercmdInmediatos} se muestran los comandos inmediatos más utilizados, en la última columna se muestra la respuesta de la impresora.
 
 \begin{table}[htpb]
 \centering
-\caption[Comandos inmediatos protocolo DPL]{Comandos inmediatos protocolo DPL}
+\caption[Comandos inmediatos protocolo DPL]{Comandos inmediatos protocolo DPL.}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{c c l}
 \toprule
 \textbf{ASCII (HEX)} & \textbf{Descripción} & \multicolumn{1}{c}{\textbf{Respuesta}}\\ 
 \midrule
-\begin{tabular}[c]{@{}c@{}}\textless{}SOH\textgreater{}A\textless{}CR\textgreater\\ (0x01,0x41,0x0D)\end{tabular} & \begin{tabular}[c]{@{}c@{}}Pedido de estado de la impresora.\\ Para poder imprimir, todos los campos\\devueltos por la impresora \\ deben ser el carácter 'N'\end{tabular} & \begin{tabular}[c]{@{}l@{}}La respuesta son 8 caracteres 'Y' o 'N' \\mas el carácter \textless{}CR\textgreater{} de final de mensaje.\\ \\ abcdefgh\textless{}CR\textgreater\\ a: Interprete de comandos ocupado\\ b: Falla de papel\\ c: Falla del \textit{Ribbon}\\ d: Imprimiendo lote (se pueden enviar \\varias etiquetas para imprimir)\\ e: Impresora ocupada\\ f: Impresora pausada\\ g: Etiqueta presentada\\ h: Falla interna\end{tabular} \\
+\begin{tabular}[c]{@{}c@{}}\textless{}SOH\textgreater{}A\textless{}CR\textgreater\\ (0x01,0x41,0x0D)\end{tabular} & \begin{tabular}[c]{@{}c@{}}Pedido de estado de la impresora.\end{tabular} & \begin{tabular}[c]{@{}l@{}}La respuesta son 8 caracteres 'Y' o 'N' \\mas el carácter \textless{}CR\textgreater{} de final de mensaje.\\ \\ abcdefgh\textless{}CR\textgreater\\ a: Interprete de comandos ocupado\\ b: Falla de papel\\ c: Falla del \textit{Ribbon}\\ d: Imprimiendo lote (se pueden enviar \\varias etiquetas para imprimir)\\ e: Impresora ocupada\\ f: Impresora pausada\\ g: Etiqueta presentada\\ h: Falla interna\end{tabular} \\
 \begin{tabular}[c]{@{}c@{}}\textless{}SOH\textgreater{}*\textless{}CR\textgreater\\ (0x01,0x2A,0x0D)\end{tabular} & Pedido de reinicio de la impresora                                                                                                                                       & \textless{}XON\textgreater{}R\textless{}CR\textgreater{} \\ 
 \bottomrule
 \hline
@@ -360,6 +363,8 @@ En la tabla \ref{tab:printercmdInmediatos} se muestran los comandos inmediatos m
 }
 \label{tab:printercmdInmediatos}
 \end{table}
+
+En el caso del comando \textless{}SOH\textgreater{}A\textless{}CR\textgreater{}, la respuesta de la impresora es una cadena del tipo ``YYNYYNYY\textless{}CR\textgreater{}'', donde cada carácter 'Y' o 'N' se corresponde con los caracteres ``abcdefgh\textless{}CR\textgreater{}'' de la tabla \ref{tab:printercmdInmediatos}. Para poder imprimir, la impresora debe devolver la cadena ``YYYYYYYY\textless{}CR\textgreater{}'' la cual indica que no tiene errores ni está ocupada con otra tarea.
 
 \subsubsection{Comandos de sistema}
 
@@ -369,7 +374,7 @@ El comando \textless{}STX\textgreater{}L\textless{}CR\textgreater{} es el más u
 
 \begin{table}[htpb]
 \centering
-\caption[Comandos de sistema protocolo DPL]{Comandos de sistema protocolo DPL}
+\caption[Comandos de sistema protocolo DPL]{Comandos de sistema protocolo DPL.}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{c c c c c}
 \hline
@@ -396,22 +401,24 @@ En el ejemplo de la tabla \ref{tab:printercmdSystem} se imprime la etiqueta most
 \begin{figure}[htpb]
 	\centering
 	\includegraphics[scale=0.3]{./Figures/label_ej.png}
-	\caption{Etiqueta resultante del comando de la columna Ejemplo de la tabla \ref{tab:printercmdSystem}}
+	\caption{Etiqueta resultante del comando de la columna Ejemplo de la tabla \ref{tab:printercmdSystem}.}
 	\label{fig:label_ej}
 \end{figure}
 
 Se pueden enviar varias líneas a imprimir en un solo comando, en este caso, para indicar el fin del texto se debe enviar E\textless{}CR\textgreater.
 
 \subsection{Módulo adaptador RS232}
-Para este trabajo se utilizó el módulo de la figura \ref{fig:rs232} para comunicar la impresora con la UART del microcontrolador. Este módulo está basado en el integrado MAX3232 \citep{MAX3232} y adapta las señales del capa física RS232 a valores acordes para trabajar con el microcontrolador.
+\label{subsec:Mod232}
+Para comunicar la impresora con la UART del microcontrolador se utilizó el módulo de la figura \ref{fig:rs232}. 
 
-\begin{figure}[htpb]
+\begin{figure}[hb]
 	\centering
-	\includegraphics[scale=0.3]{./Figures/rs3232.png}
-	\caption{Módulo adaptador RS232 a TTL}
+	\includegraphics[scale=0.25]{./Figures/rs3232.png}
+	\caption{Módulo adaptador RS232 a TTL.}
 	\label{fig:rs232}
 \end{figure}
 
+Este módulo está basado en el integrado MAX3232 \citep{MAX3232} y adapta las señales del capa física RS232 a valores acordes para trabajar con el microcontrolador.
 
 \section{Display alfanumérico}
 
@@ -420,15 +427,15 @@ Para este trabajo se utilizó un \textit{display} alfanumérico de 20 columnas p
 \begin{figure}[htpb]
 	\centering
 	\includegraphics[scale=0.7]{./Figures/display.jpg}
-	\caption{\textit{Display} alfanumérico de 20x4}
+	\caption{\textit{Display} alfanumérico de 20x4.}
 	\label{fig:display}
 \end{figure}
 
 El display cuenta con una interfaz paralela de 8-bits (DB0-7) la cual puede ser utilizada en formato 4-bits haciendo 2 escrituras o lecturas. Cuenta también con tres líneas de control denominadas RS, R/W y EN. En la tabla \ref{tab:display} se muestran las señales necesarias para el manejo del \textit{display}.
 
-\begin{table}[htpb]
+\begin{table}[ht]
 \centering
-\caption[Señales de control y datos \textit{display}]{Señales de control y datos \textit{display}}
+\caption[Señales de control y datos \textit{display}]{Señales de control y datos \textit{display}.}
 \begin{tabular}{c c c}
 \hline
 \toprule
@@ -444,18 +451,19 @@ DB    & 8 & \textit{Bus} de datos \\
 \label{tab:display}
 \end{table}
 
-
 Para utilizar el display se cuenta con 2 tipos de operaciones las cuales se diferencian por el bit de control RS:
 \begin{itemize}
 \item RS=0: Escribir/leer una instrucción.
 \item RS=1: Escribir/leer un carácter ASCII.
 \end{itemize}
 
+\pagebreak
+
 En la tabla \ref{tab:displayCmd} se muestran las instrucciones más utilizadas.
 
 \begin{table}[htpb]
 \centering
-\caption[Instrucciones controlador HD44780]{Instrucciones más utilizadas para el controlador HD44780}
+\caption[Instrucciones controlador HD44780]{Instrucciones más utilizadas para el controlador HD44780.}
 \begin{tabular}{c c l}
 \hline
 \toprule
@@ -471,45 +479,47 @@ Fijar \textit{Set}    & 0x10 & \begin{tabular}[l]{@{}l@{}}- Fijar tamaño del \t
 \label{tab:displayCmd}
 \end{table}
 
-\pagebreak
-
 \section{Módulos misceláneos}
 
 En esta sección se describe el módulo utilizado como elemento de maniobra para alimentar los bobinados del transformador y la fuente de alimentación utilizada en el trabajo.
 
 \subsubsection{Módulo de relés}
+\label{subsubsec:ModRel}
 
-Para este trabajo se utilizó el módulo de la figura \ref{fig:reles} para poder conmutar las tensiones aplicadas a los bobinados del transformador bajo ensayo. Este módulo está compuesto por 8 relés los cuales pueden ser manejados en forma aislada por el microcontrolador a través de optoacopladores. 
+Para poder conmutar las tensiones aplicadas a los bobinados del transformador bajo ensayo se utilizó el módulo de la figura \ref{fig:reles} . Este módulo está compuesto por 8 relés los cuales pueden ser manejados en forma aislada por el microcontrolador a través de optoacopladores. Este módulo permitió actuar sobre las altas tensiones del transformador bajo ensayo de una manera segura.
 
 \begin{figure}[htpb]
 	\centering
 	\includegraphics[scale=0.7]{./Figures/reles.jpeg}
-	\caption{Módulo de relés}
+	\caption{Módulo de relés.}
 	\label{fig:reles}
 \end{figure}
 
+\pagebreak
+
 \subsubsection{Módulo de alimentación}
+\label{subsubsec:ModAlim}
 
 El dispositivo diseñado debe ser alimentado desde la red eléctrica de Argentina (220 V$_{RMS}$ - 50 hz) para tal fin, se utilizó la fuente conmutada mostrada en la figura \ref{fig:fte}.
 
 \begin{figure}[htpb]
 	\centering
 	\includegraphics[scale=0.6]{./Figures/fte.png}
-	\caption{Módulo de alimentación}
+	\caption{Módulo de alimentación.}
 	\label{fig:fte}
 \end{figure}
 
 Especificaciones técnicas\footnote{\url{https://articulo.mercadolibre.com.ar/MLA-700576819-fuente-aislada-switching-220v-5v-700ma-35w-20off-nut-_JM\#reco_item_pos=2&reco_backend=machinalis-v2p-pdp-boost-v2&reco_backend_type=low_level&reco_client=vip-v2p&reco_id=90222827-7627-46cb-9f2b-78620eec7ea2}}:
 \begin{itemize}
-\item Tensión de entrada: 85 a 265 V$_{RMS}$ 50 hz
-\item Corriente de entrada: 0,0273 A (110 V$_{RMS}$) y 0,014 A (220 V$_{RMS}$)
-\item Tensión de salida: 5 V +/- 0,2 V
-\item Corriente de salida: 700 mA (800 mA$_{PICO}$)
-\item Ripple: 60 mV
-\item Potencia: 3,5 W
-\item Eficiencia: 80\%
+\item Tensión de entrada: 85 a 265 V$_{RMS}$ 50 hz.
+\item Corriente de entrada: 0,0273 A (110 V$_{RMS}$) y 0,014 A (220 V$_{RMS}$).
+\item Tensión de salida: 5 V +/- 0,2 V.
+\item Corriente de salida: 700 mA (800 mA$_{PICO}$).
+\item Ripple: 60 mV.
+\item Potencia: 3,5 W.
+\item Eficiencia: 80\%.
 \item Protección contra corto circuito.
-\item Temperatura de operación: -20 a 60 $^{\circ}$C 
+\item Temperatura de operación: -20 a 60 $^{\circ}$C.
 \end{itemize}
 
 
