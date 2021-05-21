@@ -93,7 +93,7 @@ A continuación se enumeran los requerimientos consensuados con el cliente:
 	\item El dispositivo debe ser capaz de conmutar las tensiones primarias y secundarias.
 	\item El dispositivo debe tener un \textit{display} LCD alfanumérico de 20x4 caracteres.
 	\item El dispositivo debe tener una interfaz Wi-Fi.
-	\item El dispositivo debe tener una interfaz RS232 capaz de manejar impresoras series.
+	\item El dispositivo debe tener una interfaz RS-232 capaz de manejar impresoras series.
 	\item El dispositivo debe alimentarse desde la red eléctrica Argentina 220 V$_{RMS}$/50 hz, debiendo proveerse todas las alimentaciones a los diferentes módulos de hardware.
 	\item El dispositivo debe poseer un \textit{switch} para indicar que la tapa de seguridad ha sido removida.
 	\item El dispositivo debe poseer tres pulsadores nombrados Configurar, Testear y Cancelar.
@@ -115,6 +115,7 @@ A continuación se enumeran los requerimientos consensuados con el cliente:
 	\item Precisión en la medición de corriente: mejor al 4\% (puede variar en base a lo que se pueda conseguir en el mercado).
 	\end{enumerate}
 \subsection{Requerimientos funcionales}
+\label{subsec:ReqFun}
 	\begin{enumerate}
 	\item El dispositivo debe permitir que se configuren los umbrales mínimos y máximos para los parámetros medidos. 
 	\item Los valores a configurar deben ser adquiridos solo por Wi-Fi, no se admite configuración local por teclado.
@@ -127,6 +128,7 @@ A continuación se enumeran los requerimientos consensuados con el cliente:
 		\end{enumerate}
 	\end{enumerate}	
 \subsection{Requerimientos de comunicación}
+\label{subsec:ReqCom}
 	\begin{enumerate}
 	\item Solicitar parámetros de configuración: el dispositivo debe generar un comando GET de HTTP a un servidor web (provisto por el cliente) para obtener los umbrales de aceptación y el número de partida del transformador a ensayar.
 	\item El dispositivo debe ser capaz de procesar la respuesta del comando GET que está en formato JSON.
@@ -309,7 +311,7 @@ Especificaciones técnicas del modelo E-4204B:
 \item Ancho máximo de papel: 112 mm.
 \item Capacidad de rollo: diámetro externo 127 mm.
 \item Memoria: DRAM de 16 MB/Flash de 8 MB.
-\item Comunicación: USB 2.0 y RS232 serie.
+\item Comunicación: USB 2.0 y RS-232 serie.
 \item Lenguajes soportados: DPL(Datamax), ZPL(Zebra), EPL(Eltron), BPL(Boca), IPL(Intermec).
 \item Indicadores de estado: dos indicadores luminosos de tres colores.
 \item Dimensiones: 187 mm x 203,5 mm x 282 mm.
@@ -407,18 +409,18 @@ En el ejemplo de la tabla \ref{tab:printercmdSystem} se imprime la etiqueta most
 
 Se pueden enviar varias líneas a imprimir en un solo comando, en este caso, para indicar el fin del texto se debe enviar E\textless{}CR\textgreater.
 
-\subsection{Módulo adaptador RS232}
+\subsection{Módulo adaptador RS-232}
 \label{subsec:Mod232}
 Para comunicar la impresora con la UART del microcontrolador se utilizó el módulo de la figura \ref{fig:rs232}. 
 
 \begin{figure}[hb]
 	\centering
-	\includegraphics[scale=0.25]{./Figures/rs3232.png}
-	\caption{Módulo adaptador RS232 a TTL.}
+	\includegraphics[scale=0.3]{./Figures/rs3232.png}
+	\caption{Módulo adaptador RS-232 a TTL.}
 	\label{fig:rs232}
 \end{figure}
 
-Este módulo está basado en el integrado MAX3232 \citep{MAX3232} y adapta las señales del capa física RS232 a valores acordes para trabajar con el microcontrolador.
+Este módulo está basado en el integrado MAX3232 \citep{MAX3232} y adapta las señales del capa física RS-232 a valores acordes para trabajar con el microcontrolador.
 
 \section{Display alfanumérico}
 

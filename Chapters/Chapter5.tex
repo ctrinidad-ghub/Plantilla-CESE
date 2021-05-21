@@ -13,9 +13,42 @@
 
 \section{Conclusiones generales }
 
+Se desarrolló e implementó satisfactoriamente un equipo casi autónomo capaz de caracterizar transformadores de baja tensión. Para llevar a cabo el trabajo se partió de requerimientos consensuados con el cliente Iris Tecnología S.R.L.. El desarrollo y las pruebas necesarias para la obtención del equipo final fueron realizadas siguiendo la planificación inicial y todos los requerimientos pudieron ser cumplidos con éxito.
+
+Algunos de los factores que llevaron al éxito del trabajo fueron:
+\begin{itemize}
+\item La temprana definición de requerimientos claros con el cliente.
+\item La utilización de módulos de hardware ya armados que resolvían cuestiones de hardware complejas. Los sensores de corriente y tensión son un ejemplo de esto.
+\item Utilizar una placa universal en vez de desarrollar y fabricar una placa de circuito impreso tradicional. Esto aceleró enormemente el desarrollo y pruebas de software.
+\item El desarrollo de pruebas en etapas tempranas del desarrollo, sobre \textit{protoboard}, montados en las base de madera y gabinetes final. Esto proporciono una gran flexibilidad y permitio adquirir mucha experiencia que fue muy util en el armado del gabinete. Un ejempl de esto es la districicion de modulos de hardware que se pudo pensar con la base de madera y cuando se armo el gabinete ya estaba casi resuelto.
+\end{itemize}
+
+
+
+
+
+
+de los cuales, algunos de ellos ofrecían un alto riesgo como la capacidad de utilizar una impresora con las caracteristicas que el cliente des
+
+
+Cocimientos adquiridos en la carrera aplicados al trabajo:
+
+Gestión de Proyectos: la elaboración del plan de proyecto ayudo organizar y pulir los requerientos para luego dar lugar a un trabjo realizable en tiempo y forma.
+Protocolos de Comunicación: en esta materia se desarrollo el módulo utilizado para el control del display. Ademas, se estudio realizo una introduccion al protocolo Wi-Fi que fue de gran utilidad.
+
+Ingeniería de Software en Sistemas Embebidos: proporciono el conocimiento para desarrollar la arquitectura de software utilizada en el trabajo, asi como el uso de Git y el de DoxyGen.
+
+Sistemas operativos de tiempo real 1 y 2: fueron de las materias mas importantes para el desarrollo del trabajo. En estas materias se sentaron las bases para el desarrollo de aplicaciones sobre FreeRTOS, que es la base sobre la cual se desarrolló todo el proyecto.
+
+Testing de software embibido: fue de gran utilidad para la realización de las pruebas de integración utilizando la metodología \textit{State transition testing} (STT)
+
+Diseño de Circuitos Impresos: aportó al uso de la herramienta libre KiCad y los criterios basicos para la distribucion de componentes en la placa universal.
+
+Desarrollo de aplicaciones en sistemas operativos de propósito general: se estudio la interaccion con API REST a traves del del protocolo HTTP, esto fue de vital importancia ya que el servidor web del cliente esta basado en esta filosofia de trabajo.
+
 %----------------------------------------------------------------------------------------
 %	SECTION 2
 %----------------------------------------------------------------------------------------
 \section{Próximos pasos}
 
-
+Como mejoras a futuro se puede pensar en pasar de la placa universal a una placa de circuito impreso que incluya todos los módulos. Esto le proporcionaria al equipo una mayor robustez ademas de ocupar menos espacio.
