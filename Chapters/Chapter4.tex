@@ -30,7 +30,7 @@ En la figura \ref{fig:Protoboard} se muestra el banco de pruebas para el sensor 
 	\label{fig:Protoboard}
 \end{figure}
 
-En los ensayos sobre \textit{protoboard}, se realizaron pruebas sobre los módulos individuales con bloques de firmware reducidos. Las pruebas principales se detallan a continuación:
+En los ensayos sobre \textit{protoboard} se realizaron pruebas sobre los módulos individuales con bloques de firmware reducidos. Las pruebas principales se detallan a continuación:
 \begin{enumerate}
 	\item Pruebas de los módulos sensores de tensión y corriente.
 	\item Pruebas del \textit{display}.
@@ -43,7 +43,7 @@ Para las pruebas sobre los módulos sensores de tensión y corriente se utilizar
 \item Osciloscopio. Marca: OWON, modelo: VDS3102  \citep{VDS3102}.
 \end{itemize}
 
-A partir de estos instrumentos, se realizaron mediciones para constatar la exactitud y repetitividad de los módulos sensores, así como, para ajustar los potenciometros y entregar tensiones acorde para las entradas del ADC del microcontrolador. A modo de ejemplo, en la figura \ref{fig:ISOsc}, se muestra una captura de pantalla de la tensión entregada por el módulo sensor de corriente para el bobinado secundario.
+A partir de estos instrumentos se realizaron mediciones para constatar la exactitud y repetitividad de los módulos sensores, así como para ajustar los potenciometros y entregar tensiones acorde para las entradas del ADC del microcontrolador. A modo de ejemplo, en la figura \ref{fig:ISOsc} se muestra una captura de pantalla de la tensión entregada por el módulo sensor de corriente para el bobinado secundario.
 
 \begin{figure}[htpb]
 	\centering
@@ -52,7 +52,7 @@ A partir de estos instrumentos, se realizaron mediciones para constatar la exact
 	\label{fig:ISOsc}
 \end{figure}
 
-Luego de validar los módulos de hardware individualmente sobre el \textit{protoboard}, se procedió a montarlos sobre una base de madera y a construir la placa universal. Esta nueva etapa permitió comenzar a trabajar en las pruebas de integración sin necesidad de contar con los gabinetes totalmente ensamblados. Se decidió realizar esta etapa intermedia porque los ensayos en \textit{protoboard} no eran aptos para la gran cantidad de módulos a conectar y, además, representaba un riesgo grande ya que varios módulos están conectados a 220 V$_{RMS}$. En la figura \ref{fig:BaseMadera}, se observa la base de madera con varios módulos montados sobre ella.
+Luego de validar los módulos de hardware individualmente sobre el \textit{protoboard} se procedió a montarlos sobre una base de madera y a construir la placa universal. Esta nueva etapa permitió comenzar a trabajar en las pruebas de integración sin necesidad de contar con los gabinetes totalmente ensamblados. Se decidió realizar esta etapa intermedia porque los ensayos en \textit{protoboard} no eran aptos para la gran cantidad de módulos a conectar y, además, representaba un riesgo grande ya que varios módulos están conectados a 220 V$_{RMS}$. En la figura \ref{fig:BaseMadera} se observa la base de madera con varios módulos montados sobre ella.
 
 \begin{figure}[htpb]
 	\centering
@@ -63,12 +63,12 @@ Luego de validar los módulos de hardware individualmente sobre el \textit{proto
 
 En esta etapa se realizaron las siguientes pruebas:
 \begin{enumerate}
-	\item Pruebas del módulo Wi-Fi. Se armaron rutinas básicas de conexión y desconexión y, a través de un \textit{ping} a la IP obtenida por el módulo, se verificó la correcta operación.
-	\item Pruebas de las mediciones analógicas. Con la inclusión de la placa universal como interfaz entre los módulos sensores y el kit, se procedió a verificar la lectura de los ADCs dentro del kit.
+	\item Pruebas del módulo Wi-Fi. Se armaron rutinas básicas de conexión y desconexión y a través de un \textit{ping} a la IP obtenida por el módulo, se verificó la correcta operación.
+	\item Pruebas de las mediciones analógicas. Con la inclusión de la placa universal como interfaz entre los módulos sensores y el kit se procedió a verificar la lectura de los ADCs dentro del kit.
 	\item Pruebas con una impresora de un modelo similar a la adquirida finalmente. Esta impresora fue prestada por el cliente para comprobar la factibilidad de la implementación del protocolo DPL.
 \end{enumerate}
 
-Con respecto a las entradas analógicas, se verificó que el período de muestreo fijado sea el esperado. Luego, se evalúo el ruido de la señal digitalizada y se decidió implementar el filtro digital explicado en la sección \ref{subsec:RMS}. Para verificar el filtrado, se procedió a leer el \textit{buffer} de 1024 muestras obtenido del DMA y a leer el mismo \textit{buffer} luego de pasarlo por el filtro digital. En la figura \ref{fig:filtroPrue} se muestra la señal antes y después del filtro y se aprecia la mejora debido al filtrado.
+Con respecto a las entradas analógicas, se verificó que el período de muestreo fijado sea el esperado. Luego se evalúo el ruido de la señal digitalizada y se decidió implementar el filtro digital explicado en la sección \ref{subsec:RMS}. Para verificar el filtrado se procedió a leer el \textit{buffer} de 1024 muestras obtenido del DMA y a leer el mismo \textit{buffer} luego de pasarlo por el filtro digital. En la figura \ref{fig:filtroPrue} se muestra la señal antes y después del filtro y se aprecia la mejora debido al filtrado.
 
 \begin{figure}[htpb]
 	\centering
@@ -80,22 +80,22 @@ Con respecto a las entradas analógicas, se verificó que el período de muestre
 \pagebreak
 
 \section{Ensayos funcionales de integración}
-Para los ensayos de integración, se decidió utilizar la metodología \textit{State transition testing} (STT) vista en la asignatura Testing de Software Embebido \citep{STT}. La metodología utilizada establece pasos sistemáticos para las pruebas de sistemas cuya funcionalidad depende de estados, de forma tal, de probar todos los caminos posibles y evitar dejar estados o condiciones sin cubrir. Para cada evento de entrada se debe verificar que:
+Para los ensayos de integración, se decidió utilizar la metodología \textit{State transition testing} (STT) vista en la asignatura Testing de Software Embebido \citep{STT}. La metodología utilizada establece pasos sistemáticos para las pruebas de sistemas cuya funcionalidad depende de estados, de forma tal de probar todos los caminos posibles y evitar dejar estados o condiciones sin cubrir. Para cada evento de entrada se debe verificar que:
 
 \begin{enumerate}
 	\item Se ejecutan las salidas correctas.
 	\item El sistema cambia al estado correcto.
 \end{enumerate}
 
-Se tomó la decisión de utilizar esta metodología debido a que el equipo diseñado se comanda por el controlador principal, el cual, está construido sobre una máquina de estados finitos. Basado en lo anterior, tener una buena cobertura de dicha máquina de estados, asegura una buena cobertura del sistema general.
+Se tomó la decisión de utilizar esta metodología debido a que el equipo diseñado se comanda por el controlador principal, el cual está construido sobre una máquina de estados finitos. Basado en lo anterior, tener una buena cobertura de dicha máquina de estados asegura una buena cobertura del sistema general.
 
-Para implementar la metodología propuesta, se tomaron las sub-máquinas de estados presentadas en la sección \ref{sec:ContSist}. Estas fueron definidas para las etapas de inicialización, de configuración, de caracterización y de reporte. El primer paso fue armar un árbol de transiciones para cada una de ellas, para luego, armar las tablas con los casos de pruebas. En el árbol de transiciones, las transacciones se marcan con un número en la línea de transición entre estados, este número es luego referenciado como ID en la primer columna de las tablas de casos de pruebas. La segunda columna corresponde a las entradas esperadas por parte de la persona encargada de la prueba. En caso de no requerir entrada, porque la transición de estado ocurre en forma automática, se coloca un guion '-' en dicha columna. 
+Para implementar la metodología propuesta, se tomaron las sub-máquinas de estados presentadas en la sección \ref{sec:ContSist}. Estas fueron definidas para las etapas de inicialización, de configuración, de caracterización y de reporte. El primer paso fue armar un árbol de transiciones para cada una de ellas, para luego armar las tablas con los casos de pruebas. En el árbol de transiciones, las transacciones se marcan con un número en la línea de transición entre estados. Este número es luego referenciado como ID en la primer columna de las tablas de casos de pruebas. La segunda columna corresponde a las entradas esperadas por parte de la persona encargada de la prueba. En caso de no requerir entrada, porque la transición de estado ocurre en forma automática, se coloca un guion '-' en dicha columna. 
 
-Por otro lado, como salidas, se tiene el \textit{display}, lo enviado o recibido desde el servidor web, el sonido emitido por el \textit{buzzer} y la etiqueta impresa por la impresora. En cada paso, se verifica que dichas interfaces respondan como se espera.
+Por otro lado, como salidas se tiene el \textit{display}, lo enviado o recibido desde el servidor web, el sonido emitido por el \textit{buzzer} y la etiqueta impresa por la impresora. En cada paso se verifica que dichas interfaces respondan como se espera.
 
-A su vez que se probaron las secuencias definidas por los árboles de transiciones, se validó que dicho comportamiento es consistente con los requerimientos funcionales del sistema presentados en el capítulo \ref{Chapter2}. 
+A su vez, se probaron las secuencias definidas por los árboles de transiciones y se validó que dicho comportamiento es consistente con los requerimientos funcionales del sistema presentados en el capítulo \ref{Chapter2}. 
 
-Para los ensayos que se presentan se miden las siguientes variables:
+Para los ensayos que se presentan se midieron las siguientes variables:
 \begin{itemize}
  	\item Tensión en bobinado primario.
 	\item Corriente que circula por el bobinado primario.
@@ -103,7 +103,7 @@ Para los ensayos que se presentan se miden las siguientes variables:
 	\item Corriente que circula por el bobinado secundario.
 \end{itemize}
 
-En la figura \ref{fig:EnsayoPrimario}, se muestra el banco de pruebas para el bobinado primario y en la figura \ref{fig:EnsayoSecu} se muestra el banco de pruebas para el bobinado secundario. Se puede notar que la medición de corriente carece de sentido cuando el bobinado en cuestión está abierto.
+En la figura \ref{fig:EnsayoPrimario} y \ref{fig:EnsayoSecu} se muestran los bancos de pruebas para los bobinados primario y secundario respectivamente. Se puede notar que la medición de corriente carece de sentido cuando el bobinado en cuestión está abierto.
 
 \begin{figure}[htpb]
 	\centering
@@ -119,7 +119,7 @@ En la figura \ref{fig:EnsayoPrimario}, se muestra el banco de pruebas para el bo
 	\label{fig:EnsayoSecu}
 \end{figure}
 
-En la tabla \ref{tab:ref_med}, se muestran las convenciones de nombres utilizadas para referenciar los valores medidos de las figuras \ref{fig:EnsayoPrimario} y \ref{fig:EnsayoSecu} en las interfaces del sistema. En la primera columna de la tabla, se muestran los valores medidos y en las columnas subsiguientes, como estos son referenciados en el \textit{display}, en el servidor web y en la etiqueta impresa. 
+En la tabla \ref{tab:ref_med} se muestran las convenciones de nombres utilizadas para referenciar los valores medidos de las figuras \ref{fig:EnsayoPrimario} y \ref{fig:EnsayoSecu} en las interfaces del sistema. En la primera columna de la tabla se muestran los valores medidos y en las columnas subsiguientes como estos son referenciados en el \textit{display}, en el servidor web y en la etiqueta impresa. 
 
 \begin{table}[htpb]
 \centering
@@ -145,7 +145,7 @@ Se puede notar que no todos los valores medidos son mostrados en todas las inter
 
 \subsection{Pruebas de la etapa de inicialización}
 
-Para la etapa de inicialización, se armó el árbol de transiciones mostrado en la figura \ref{fig:ArTrans_1}.
+Para la etapa de inicialización se armó el árbol de transiciones mostrado en la figura \ref{fig:ArTrans_1}.
 
 \begin{figure}[htpb]
 	\centering
@@ -154,9 +154,9 @@ Para la etapa de inicialización, se armó el árbol de transiciones mostrado en
 	\label{fig:ArTrans_1}
 \end{figure}
 
-A partir del árbol generado, se obtuvieron cuatro caminos a verificar: \textit{test path} 1 a 4. De estos caminos, se armaron las tablas \ref{tab:pruIni_1} a \ref{tab:pruIni_4} con los casos de pruebas.
+A partir del árbol generado se obtuvieron cuatro caminos a verificar: \textit{test path} 1 a 4. De estos caminos se armaron las tablas \ref{tab:pruIni_1} a \ref{tab:pruIni_4} con los casos de pruebas.
 
-Para las pruebas de inicialización, se debe utilizar un equipo sin ningún dato de configuración cargado, de forma tal, de pasar por todos los pasos del árbol de transiciones.
+Para las pruebas de inicialización se debe utilizar un equipo sin ningún dato de configuración cargado, de forma tal de pasar por todos los pasos del árbol de transiciones.
 
 Finalmente, en los casos en que el equipo queda bloqueado, \textit{test path} 1 y 2, se verificó que este no responde a ningún pulsador.
 
@@ -170,7 +170,7 @@ Condiciones iniciales:
 	\item Impresora encendida y conectada.
 \end{enumerate}
 
-En la tabla \ref{tab:pruIni_1}, se muestran los casos de pruebas para el \textit{test path} 1.
+En la tabla \ref{tab:pruIni_1} se muestran los casos de pruebas para el \textit{test path} 1.
 
 \begin{table}[htpb]
 \centering
@@ -193,7 +193,7 @@ En la tabla \ref{tab:pruIni_1}, se muestran los casos de pruebas para el \textit
 \end{table}
 
 \pagebreak
-Resultado: el ensayo se superó con éxito. En la figura \ref{fig:pruIni_1_res}, se muestran las imágenes obtenidas del \textit{display} para cada paso.
+Resultado: el ensayo se superó con éxito. En la figura \ref{fig:pruIni_1_res} se muestran las imágenes obtenidas del \textit{display} para cada paso.
 
 \begin{figure}[!htpb]
      \centering
@@ -248,7 +248,7 @@ Condiciones iniciales:
 	\item Teléfono móvil con la aplicación ESP-Touch instalada.
 \end{enumerate}
 
-En la tabla \ref{tab:pruIni_2}, se muestran los casos de pruebas para el \textit{test path} 2.
+En la tabla \ref{tab:pruIni_2} se muestran los casos de pruebas para el \textit{test path} 2.
 
 \begin{table}[htpb]
 \centering
@@ -271,7 +271,7 @@ En la tabla \ref{tab:pruIni_2}, se muestran los casos de pruebas para el \textit
 \label{tab:pruIni_2}
 \end{table}
 
-Resultado: el ensayo se superó con éxito. En la figura \ref{fig:pruIni_2_res}, se muestran las imágenes obtenidas del \textit{display} para cada paso, se omiten las capturas de los primeros tres pasos ya que son iguales a las del \textit{test path} 1. 
+Resultado: el ensayo se superó con éxito. En la figura \ref{fig:pruIni_2_res} se muestran las imágenes obtenidas del \textit{display} para cada paso. Se omiten las capturas de los primeros tres pasos ya que son iguales a las del \textit{test path} 1. 
  
 \begin{figure}[!htpb]
      \centering
@@ -299,7 +299,7 @@ Resultado: el ensayo se superó con éxito. En la figura \ref{fig:pruIni_2_res},
         \label{fig:pruIni_2_res}
 \end{figure}
 
-En la figura \ref{fig:pruIni_2_ESPT}, se muestra una captura de pantalla de la aplicación ESP-Touch donde se observa la falla al intentar transferir las credenciales de Wi-Fi al equipo.
+En la figura \ref{fig:pruIni_2_ESPT} se muestra una captura de pantalla de la aplicación ESP-Touch donde se observa la falla al intentar transferir las credenciales de Wi-Fi al equipo.
 
 \begin{figure}[htpb]
 	\centering
@@ -320,7 +320,7 @@ Condiciones iniciales:
 	\item Teléfono móvil con aplicación ESP-Touch instalada.
 \end{enumerate}
 
-En la tabla \ref{tab:pruIni_3}, se muestran los casos de pruebas para el \textit{test path} 3.
+En la tabla \ref{tab:pruIni_3} se muestran los casos de pruebas para el \textit{test path} 3.
 
 \begin{table}[htpb]
 \centering
@@ -344,7 +344,7 @@ En la tabla \ref{tab:pruIni_3}, se muestran los casos de pruebas para el \textit
 \end{table}
 
 \pagebreak
-Resultado: el ensayo se superó con éxito. En la figura \ref{fig:pruIni_3_res}, se muestran las imágenes obtenidas del \textit{display} para cada paso, al igual que en la figura anterior, se omiten los primeros tres pasos. 
+Resultado: el ensayo se superó con éxito. En la figura \ref{fig:pruIni_3_res} se muestran las imágenes obtenidas del \textit{display} para cada paso. Al igual que en la figura anterior se omiten los primeros tres pasos. 
 
 \begin{figure}[!htpb]
      \centering
@@ -372,7 +372,7 @@ Resultado: el ensayo se superó con éxito. En la figura \ref{fig:pruIni_3_res},
         \label{fig:pruIni_3_res}
 \end{figure}
 
-En la figura \ref{fig:pruIni_3_ESPT_1}, se muestra una captura de pantalla de la aplicación ESP-Touch donde se observa la conexión exitosa a la red Wi-Fi y la IP asignada al equipo en la red. Finalmente, en la figura \ref{fig:pruIni_3_ESPT_2} se muestra que, al conectarse el equipo a la red Wi-Fi, este responde al pedido de \textit{ping} desde el ordenador a la IP indicada por la aplicación ESP-Touch.
+En la figura \ref{fig:pruIni_3_ESPT_1} se muestra una captura de pantalla de la aplicación ESP-Touch donde se observa la conexión exitosa a la red Wi-Fi y la IP asignada al equipo en la red. Finalmente, en la figura \ref{fig:pruIni_3_ESPT_2} se muestra que al conectarse el equipo a la red Wi-Fi, este responde al pedido de \textit{ping} desde el ordenador a la IP indicada por la aplicación ESP-Touch.
 
 \pagebreak
 
@@ -401,7 +401,7 @@ Condiciones iniciales:
 \end{enumerate}
 
 
-En la tabla \ref{tab:pruIni_4}, se muestran los casos de pruebas para el \textit{test path} 4.
+En la tabla \ref{tab:pruIni_4} se muestran los casos de pruebas para el \textit{test path} 4.
 
 \begin{table}[htpb]
 \centering
@@ -424,7 +424,7 @@ En la tabla \ref{tab:pruIni_4}, se muestran los casos de pruebas para el \textit
 
 \pagebreak
 
-Resultado: el ensayo se superó con éxito. En la figura \ref{fig:pruIni_4_res}, se muestran las imágenes obtenidas del \textit{display} para cada paso. En este caso, el equipo no requiere interacción con el operador ya que, las credenciales de Wi-Fi fueron correctamente configuradas en el paso anterior y se guardaron en la memoria no volátil del equipo.
+Resultado: el ensayo se superó con éxito. En la figura \ref{fig:pruIni_4_res} se muestran las imágenes obtenidas del \textit{display} para cada paso. En este caso el equipo no requiere interacción con el operador ya que las credenciales de Wi-Fi fueron correctamente configuradas en el paso anterior y se guardaron en la memoria no volátil del equipo.
 
 \begin{figure}[!htpb]
      \centering
@@ -454,7 +454,7 @@ Resultado: el ensayo se superó con éxito. En la figura \ref{fig:pruIni_4_res},
 
 \subsection{Pruebas de la etapa de configuración}
 
-Para la etapa de configuración, se armó el árbol de transiciones mostrado en la figura \ref{fig:ArTrans_2}. A partir de este, se obtuvieron tres caminos a verificar: \textit{test path} 5 a 7, de los cuales, surgen las tablas \ref{tab:pruConf_5} a \ref{tab:pruConf_7} con los casos de pruebas.
+Para la etapa de configuración se armó el árbol de transiciones mostrado en la figura \ref{fig:ArTrans_2}. A partir de este se obtuvieron tres caminos a verificar: \textit{test path} 5 a 7, de los cuales surgen las tablas \ref{tab:pruConf_5} a \ref{tab:pruConf_7} con los casos de pruebas.
 
 \begin{figure}[htpb]
 	\centering
@@ -463,15 +463,15 @@ Para la etapa de configuración, se armó el árbol de transiciones mostrado en 
 	\label{fig:ArTrans_2}
 \end{figure}
 
-Para las pruebas de configuración, se parte siempre del estado STANDBY, por lo tanto, se tiene que superar el \textit{test path} 4 del estado de inicialización para poder comenzar las pruebas de esta etapa.
+Para las pruebas de configuración se parte siempre del estado STANDBY, por lo tanto, se tiene que superar el \textit{test path} 4 del estado de inicialización para poder comenzar las pruebas de esta etapa.
 
 \pagebreak
 
-A partir de estos ensayos, se pudieron validar los requerimientos: 
+A partir de estos ensayos se pudieron validar los siguientes requerimientos: 
 \begin{itemize}
-\item Requerimientos 1 y 2 de la sección \ref{subsec:ReqFun}.
-\item Requerimientos 1 y 2 de la sección \ref{subsec:ReqCom}.
-\item Requerimientos 1.a y 2.a de la sección \ref{subsec:ReqUsu}.
+	\item El dispositivo debe permitir que se configuren los umbrales mínimos y máximos para los parámetros medidos. 
+	\item Los valores a configurar deben ser adquiridos solo por Wi-Fi, no se admite configuración local por teclado.
+	\item El dispositivo debe generar un comando GET de HTTP a un servidor web para obtener los datos del ensayo.
 \end{itemize}
 
 \subsubsection{Prueba del \textit{test path} 5}
@@ -484,7 +484,7 @@ Condiciones iniciales:
 	\item Impresora encendida y conectada.
 \end{enumerate}
 
-En la tabla \ref{tab:pruConf_5}, se muestran los casos de pruebas para el \textit{test path} 5.
+En la tabla \ref{tab:pruConf_5} se muestran los casos de pruebas para el \textit{test path} 5.
 
 \begin{table}[htpb]
 \centering
@@ -506,7 +506,7 @@ En la tabla \ref{tab:pruConf_5}, se muestran los casos de pruebas para el \texti
 \label{tab:pruConf_5}
 \end{table}
 
-Resultado: el ensayo se superó con éxito. En la figura \ref{fig:pruConf_5_res}, se muestran las imágenes obtenidas del \textit{display} para cada paso.
+Resultado: el ensayo se superó con éxito. En la figura \ref{fig:pruConf_5_res} se muestran las imágenes obtenidas del \textit{display} para cada paso.
 
 \begin{figure}[!htpb]
      \centering
@@ -534,8 +534,6 @@ Resultado: el ensayo se superó con éxito. En la figura \ref{fig:pruConf_5_res}
         \label{fig:pruConf_5_res}
 \end{figure}
 
-\pagebreak
-
 \subsubsection{Prueba del \textit{test path} 6}
 \label{subsubsec:pruConf_6}
 
@@ -547,7 +545,7 @@ Condiciones iniciales:
 	\item Servidor web no disponible. Se le pidió al cliente que detenga el servidor web para llevar a cabo la prueba.
 \end{enumerate}
 
-En la tabla \ref{tab:pruConf_6}, se muestran los casos de pruebas para el \textit{test path} 6.
+En la tabla \ref{tab:pruConf_6} se muestran los casos de pruebas para el \textit{test path} 6.
 
 \begin{table}[htpb]
 \centering
@@ -570,7 +568,7 @@ En la tabla \ref{tab:pruConf_6}, se muestran los casos de pruebas para el \texti
 \label{tab:pruConf_6}
 \end{table}
 
-Resultado: el ensayo se superó con éxito. En la figura \ref{fig:pruConf_6_res}, se muestran las imágenes obtenidas del \textit{display} para cada paso.
+Resultado: el ensayo se superó con éxito. En la figura \ref{fig:pruConf_6_res} se muestran las imágenes obtenidas del \textit{display} para cada paso.
 
 \begin{figure}[!htpb]
      \centering
@@ -625,7 +623,7 @@ Condiciones iniciales:
 	\label{fig:serv_web_conf}
 \end{figure}
 
-En la tabla \ref{tab:pruConf_7}, se muestran los casos de pruebas para el \textit{test path} 7.
+En la tabla \ref{tab:pruConf_7} se muestran los casos de pruebas para el \textit{test path} 7.
 
 \begin{table}[htpb]
 \centering
@@ -648,7 +646,7 @@ En la tabla \ref{tab:pruConf_7}, se muestran los casos de pruebas para el \texti
 \label{tab:pruConf_7}
 \end{table}
 
-Resultado: el ensayo se superó con éxito. En la figura \ref{fig:pruConf_7_res}, se muestran las imágenes obtenidas del \textit{display} para cada paso. 
+Resultado: el ensayo se superó con éxito. En la figura \ref{fig:pruConf_7_res} se muestran las imágenes obtenidas del \textit{display} para cada paso. 
 
 \begin{figure}[!htpb]
      \centering
@@ -683,11 +681,11 @@ Resultado: el ensayo se superó con éxito. En la figura \ref{fig:pruConf_7_res}
         \label{fig:pruConf_7_res}
 \end{figure}
 
-En las subfiguras \ref{fig:pruConf_7_3} y \ref{fig:pruConf_7_4}, correspondientes a los pasos 11 y 13, se muestran, en el \textit{display}, algunos de los datos obtenidos del servidor web. Se verificó que los datos de las subfiguras coincidan con los datos almacenados en el servidor web que se presentaron en la figura \ref{fig:serv_web_conf}. Para realizar esta comparación se debe tener en cuenta las referencias mostradas en la tabla \ref{tab:ref_med}.
+En las subfiguras \ref{fig:pruConf_7_3} y \ref{fig:pruConf_7_4}, correspondientes a los pasos 11 y 13, se muestran en el \textit{display} algunos de los datos obtenidos del servidor web. Se verificó que los datos de las subfiguras coincidan con los datos almacenados en el servidor web que se presentaron en la figura \ref{fig:serv_web_conf}. Para realizar esta comparación se debe tener en cuenta las referencias mostradas en la tabla \ref{tab:ref_med}.
 
 \subsection{Pruebas de la etapa de caracterización}
 
-Para la etapa de caracterización, se armó el árbol de transiciones mostrado en la figura \ref{fig:ArTrans_3}. A partir de este, se obtuvieron cuatro caminos a verificar: \textit{test path} 8 a 11, de los cuales, surgen las tablas \ref{tab:pruCarac_8} a \ref{tab:pruCarac_11} con los casos de pruebas.
+Para la etapa de caracterización se armó el árbol de transiciones mostrado en la figura \ref{fig:ArTrans_3}. A partir de este se obtuvieron cuatro caminos a verificar: \textit{test path} 8 a 11, de los cuales surgen las tablas \ref{tab:pruCarac_8} a \ref{tab:pruCarac_11} con los casos de pruebas.
 
 \begin{figure}[htpb]
 	\centering
@@ -696,15 +694,20 @@ Para la etapa de caracterización, se armó el árbol de transiciones mostrado e
 	\label{fig:ArTrans_3}
 \end{figure}
 
-Para las pruebas de caracterización, se parte desde el estado STANDBY con el equipo configurado, por lo tanto, se tiene que superar el \textit{test path} 7 del estado de configuración para poder comenzar las pruebas de esta etapa.
+Para las pruebas de caracterización se parte desde el estado STANDBY con el equipo configurado, por lo tanto, se tiene que superar el \textit{test path} 7 del estado de configuración para poder comenzar las pruebas de esta etapa.
 
-A partir de estos ensayos, se pudieron validar los requerimientos: 
+\pagebreak
+
+A partir de estos ensayos se pudieron validar los siguientes requerimientos: 
 \begin{itemize}
-\item Requerimientos 3 y 4 de la sección \ref{subsec:ReqFun}.
-\item Requerimiento 3 de la sección \ref{subsec:ReqCom}.
-\item Requerimientos 1.b, 1.c, 2.a, 2.b, 2.c, 2.d y 3 de la sección \ref{subsec:ReqUsu}.
+	\item Al pulsar Testear el dispositivo debe iniciar la secuencia de testeo.
+	\item El dispositivo debe generar una confirmación de aceptación o rechazo del transformador.
+	\item El dispositivo luego de cada ensayo debe imprimir una etiqueta con la información de este.
+	\item El dispositivo debe mostrar los valores medidos del transformador ensayado en el \textit{display}.
+	\item El dispositivo debe enviar los resultados del ensayo al servidor web.
+	\item El dispositivo debe informar los resultados del ensayo a través del \textit{buzzer}.
+	\item El dispositivo debe poseer un \textit{switch} para indicar que la tapa de seguridad ha sido removida.
 \end{itemize}
-
 
 \subsubsection{Prueba del \textit{test path} 8}
 \label{subsubsec:pruCarac_8}
@@ -717,7 +720,7 @@ Condiciones iniciales:
 	\item Tapa de seguridad abierta.
 \end{enumerate}
 
-En la tabla \ref{tab:pruCarac_8}, se muestran los casos de pruebas para el \textit{test path} 8.
+En la tabla \ref{tab:pruCarac_8} se muestran los casos de pruebas para el \textit{test path} 8.
 
 \begin{table}[htpb]
 \centering
@@ -739,7 +742,9 @@ En la tabla \ref{tab:pruCarac_8}, se muestran los casos de pruebas para el \text
 \label{tab:pruCarac_8}
 \end{table}
 
-Resultado: el ensayo se superó con éxito. En la figura \ref{fig:pruConf_8_res}, se muestran las imágenes obtenidas del \textit{display} para cada paso. 
+\pagebreak
+
+Resultado: el ensayo se superó con éxito. En la figura \ref{fig:pruConf_8_res} se muestran las imágenes obtenidas del \textit{display} para cada paso. 
 
 \begin{figure}[!htpb]
      \centering
@@ -778,7 +783,9 @@ Condiciones iniciales:
 	\item Tapa de seguridad cerrada.
 \end{enumerate}
 
-En la tabla \ref{tab:pruCarac_9}, se muestran los casos de pruebas para el \textit{test path} 9.
+En la tabla \ref{tab:pruCarac_9} se muestran los casos de pruebas para el \textit{test path} 9.
+
+\pagebreak
 
 \begin{table}[htpb]
 \centering
@@ -801,7 +808,7 @@ En la tabla \ref{tab:pruCarac_9}, se muestran los casos de pruebas para el \text
 \label{tab:pruCarac_9}
 \end{table}
 
-Resultado: el ensayo se superó con éxito. En la figura \ref{fig:pruConf_9_res}, se muestran las imágenes obtenidas del \textit{display} para cada paso. A partir de la misma secuencia de prueba, se probó la apertura de la tapa de seguridad una vez iniciado el ensayo, es decir, en vez de pulsar Cancelar en el paso 17, se procedió a abrir la tapa de seguridad y el resultado obtenido fue equivalente.
+Resultado: el ensayo se superó con éxito. En la figura \ref{fig:pruConf_9_res} se muestran las imágenes obtenidas del \textit{display} para cada paso. A partir de la misma secuencia de prueba se verificó la apertura de la tapa de seguridad una vez iniciado el ensayo, es decir, en vez de pulsar Cancelar en el paso 17 se procedió a abrir la tapa de seguridad y el resultado obtenido fue equivalente.
 
 \begin{figure}[!htpb]
      \centering
@@ -847,7 +854,9 @@ Condiciones iniciales:
 	\item Tapa de seguridad cerrada.
 \end{enumerate}
 
-En la tabla \ref{tab:pruCarac_10}, se muestran los casos de pruebas para el \textit{test path} 10.
+En la tabla \ref{tab:pruCarac_10} se muestran los casos de pruebas para el \textit{test path} 10.
+
+\pagebreak
 
 \begin{table}[htpb]
 \centering
@@ -873,8 +882,6 @@ En la tabla \ref{tab:pruCarac_10}, se muestran los casos de pruebas para el \tex
 
 Resultado: el ensayo se superó con éxito. Dado que los resultados son los mismos que en el ensayo anterior, se decidió omitir las figuras. Por otro lado, se probó la apertura de la tapa de seguridad siguiendo el mismo procedimiento que en el caso anterior.
 
-\pagebreak
-
 \subsubsection{Prueba del \textit{test path} 11}
 \label{subsubsec:pruCarac_11}
 
@@ -887,7 +894,7 @@ Condiciones iniciales:
 	\item Tapa de seguridad cerrada.
 \end{enumerate}
 
-En la tabla \ref{tab:pruCarac_11}, se muestran los casos de pruebas para el \textit{test path} 11.
+En la tabla \ref{tab:pruCarac_11} se muestran los casos de pruebas para el \textit{test path} 11.
 
 \begin{table}[htpb]
 \centering
@@ -911,9 +918,9 @@ En la tabla \ref{tab:pruCarac_11}, se muestran los casos de pruebas para el \tex
 \label{tab:pruCarac_11}
 \end{table}
 
-Dado que este ensayo es el encargado de probar que las mediciones y que las comparaciones se realicen apropiadamente, este se corrió varias veces con diferentes transformadores y diferentes datos en el servidor web. Con las variantes anteriores, se pudo verificar y validar que el equipo genere los resultados esperados para transformadores aprobados o rechazados.
+Dado que este ensayo es el encargado de probar que las mediciones y que las comparaciones se realicen apropiadamente, este se corrió varias veces con diferentes transformadores y diferentes datos en el servidor web. Con las variantes anteriores se pudo verificar y validar que el equipo genere los resultados esperados para transformadores aprobados o rechazados.
 
-En el primer caso, se realiza una prueba para un transformador rechazado. En la tabla \ref{tab:pruCarac_11_res}, se muestran los resultados esperados para este ensayo. En las columnas de máximo y mínimo se muestran los valores configurados desde el servidor web, los cuales, coinciden con los mostrados en la figura \ref{fig:serv_web_conf} del \textit{test path} 7.
+En el primer caso se realiza una prueba para un transformador rechazado. En la tabla \ref{tab:pruCarac_11_res} se muestran los resultados esperados para este ensayo. En las columnas de máximo y mínimo se muestran los valores configurados desde el servidor web, los cuales coinciden con los mostrados en la figura \ref{fig:serv_web_conf} del \textit{test path} 7.
 
 \begin{table}[htpb]
 \centering
@@ -934,7 +941,7 @@ En el primer caso, se realiza una prueba para un transformador rechazado. En la 
 \label{tab:pruCarac_11_res}
 \end{table}
 
-Resultados para un transformador rechazado: el ensayo se superó con éxito. En la figura \ref{fig:pruConf_11_res_a}, se muestran las imágenes obtenidas del \textit{display} para cada paso.
+Resultados para un transformador rechazado: el ensayo se superó con éxito. En la figura \ref{fig:pruConf_11_res_a} se muestran las imágenes obtenidas del \textit{display} para cada paso.
 
 \begin{figure}[!htpb]
      \centering
@@ -962,7 +969,9 @@ Resultados para un transformador rechazado: el ensayo se superó con éxito. En 
         \label{fig:pruConf_11_res_a}
 \end{figure}
 
-En el paso 21, ya se dispone de los valores medidos y del resultado de la caracterización. En este paso, se verificó que estos valores, mostrados en el \textit{display} en la figura \ref{fig:pruConf_11_2_a}, sean iguales a los enviados al servidor web que se muestran en la figura \ref{fig:serv_web_falla_resul} e iguales a los impresos en la etiqueta que se observan en la figura \ref{fig:etiqueta_falla}. Finalmente, todos estos valores coinciden con los presentados en la tabla \ref{tab:pruCarac_11_res} al inicio de la prueba.
+En el paso 21 ya se dispone de los valores medidos y del resultado de la caracterización. En este paso se verificó que los valores mostrados en el \textit{display} en la figura \ref{fig:pruConf_11_2_a} sean iguales a los enviados al servidor web que se muestran en la figura \ref{fig:serv_web_falla_resul} y a los impresos en la etiqueta que se observan en la figura \ref{fig:etiqueta_falla}. Finalmente, todos estos valores coinciden con los presentados en la tabla \ref{tab:pruCarac_11_res} al inicio de la prueba.
+
+\pagebreak
 
 \begin{figure}[htpb]
 	\centering
@@ -978,9 +987,9 @@ En el paso 21, ya se dispone de los valores medidos y del resultado de la caract
 	\label{fig:etiqueta_falla}
 \end{figure}
 
-\pagebreak
+A continuación se procede a realizar una prueba para un transformador aprobado. Para realizar este ensayo, primero se debe configurar el equipo con nuevos valores de comparación, de forma tal que los valores medidos estén dentro de los valores a comparar y permitan que el ensayo sea aprobado. Para reconfigurar el equipo se deben guardar los valores indicados en la figura \ref{fig:serv_web_ok_conf} en el servidor web y luego se debe llevar a cabo el \textit{test path} 7 nuevamente.
 
-A continuación, se procede a realizar una prueba para un transformador aprobado. Para realizar este ensayo, primero se debe configurar el equipo con nuevos valores de comparación, de forma tal, que los valores medidos estén dentro de los valores a comparar y permitan que el ensayo sea aprobado. Para reconfigurar el equipo, se deben guardar los valores indicados en la figura \ref{fig:serv_web_ok_conf} en el servidor web y luego se debe llevar a cabo el \textit{test path} 7 nuevamente.
+\pagebreak
 
 \begin{figure}[htpb]
 	\centering
@@ -989,7 +998,7 @@ A continuación, se procede a realizar una prueba para un transformador aprobado
 	\label{fig:serv_web_ok_conf}
 \end{figure}
 
-En la tabla \ref{tab:pruCarac_11_res_apro}, se muestran los resultados esperados para este ensayo en función de los nuevos umbrales de comparación.
+En la tabla \ref{tab:pruCarac_11_res_apro} se muestran los resultados esperados para este ensayo en función de los nuevos umbrales de comparación.
 
 \begin{table}[htpb]
 \centering
@@ -1010,9 +1019,9 @@ En la tabla \ref{tab:pruCarac_11_res_apro}, se muestran los resultados esperados
 \label{tab:pruCarac_11_res_apro}
 \end{table}
 
-\pagebreak
+Resultados para un transformador aprobado: el ensayo se superó con éxito. En la figura \ref{fig:pruConf_11_res_b} se muestran las imágenes obtenidas del \textit{display} para cada paso, en la figura \ref{fig:serv_web_ok_resul} se muestran los datos enviados al servidor web y en la figura \ref{fig:etiqueta_OK} se muestra la etiqueta impresa.
 
-Resultados para un transformador aprobado: el ensayo se superó con éxito. En la figura \ref{fig:pruConf_11_res_b}, se muestran las imágenes obtenidas del \textit{display} para cada paso, en la figura \ref{fig:serv_web_ok_resul} se muestran los datos enviados al servidor web y en la figura \ref{fig:etiqueta_OK} se muestra la etiqueta impresa.
+\pagebreak
 
 \begin{figure}[!htpb]
      \centering
@@ -1040,9 +1049,7 @@ Resultados para un transformador aprobado: el ensayo se superó con éxito. En l
         \label{fig:pruConf_11_res_b}
 \end{figure}
 
-Al igual que en el ensayo para el transformador rechazado, en este caso, todos los valores obtenidos coinciden con los presentados en la tabla \ref{tab:pruCarac_11_res_apro}.
-
-\pagebreak
+Al igual que en el ensayo para el transformador rechazado, en este caso todos los valores obtenidos coinciden con los presentados en la tabla \ref{tab:pruCarac_11_res_apro}.
 
 \begin{figure}[htpb]
 	\centering
@@ -1058,10 +1065,11 @@ Al igual que en el ensayo para el transformador rechazado, en este caso, todos l
 	\label{fig:etiqueta_OK}
 \end{figure}
 
+\pagebreak
 
 \subsection{Pruebas de la etapa de reporte}
 
-Finalmente, se probó la etapa de reporte. Para esta etapa, se armó el árbol de transiciones mostrado en la figura \ref{fig:ArTrans_4}. A partir de este, se obtuvieron cuatro caminos a verificar: \textit{test path} 12 a 14. Para este caso, se muestra solo la tabla \ref{tab:pruRepor_12} que corresponde al camino 12, ya que, las demás tablas son idénticas a esta y solo cambia el mensaje de error.
+Finalmente, se probó la etapa de reporte. Para esta etapa se armó el árbol de transiciones mostrado en la figura \ref{fig:ArTrans_4}. A partir de este se obtuvieron cuatro caminos a verificar: \textit{test path} 12 a 14. Para este caso se muestra solo la tabla \ref{tab:pruRepor_12} que corresponde al camino 12 ya que las demás tablas son idénticas a esta y solo cambia el mensaje de error.
 
 \begin{figure}[htpb]
 	\centering
@@ -1070,16 +1078,7 @@ Finalmente, se probó la etapa de reporte. Para esta etapa, se armó el árbol d
 	\label{fig:ArTrans_4}
 \end{figure}
 
-Para las pruebas de reporte se parte desde el estado REPORT. Para arribar a este estado, se debe correr el \textit{test path} 11 de las pruebas de la etapa de caracterización.
-
-A partir de estos ensayos, se pudieron validar los requerimientos: 
-\begin{itemize}
-\item Requerimiento 4 de la sección \ref{subsec:ReqFun}.
-\item Requerimiento 3 de la sección \ref{subsec:ReqCom}.
-\item Requerimiento 2.d de la sección \ref{subsec:ReqUsu}.
-\end{itemize}
-
-\pagebreak
+Para las pruebas de reporte se parte desde el estado REPORT. Para arribar a este estado se debe correr el \textit{test path} 11 de las pruebas de la etapa de caracterización.
 
 \subsubsection{Prueba del \textit{test path} 12}
 \label{subsubsec:pruRepor_12}
@@ -1091,7 +1090,9 @@ Condiciones iniciales:
 	\item Impresora desenergizada.
 \end{enumerate}
 
-En la tabla \ref{tab:pruRepor_12}, se muestran los casos de pruebas para el \textit{test path} 12.
+En la tabla \ref{tab:pruRepor_12} se muestran los casos de pruebas para el \textit{test path} 12.
+
+\pagebreak
 
 \begin{table}[htpb]
 \centering
@@ -1116,7 +1117,7 @@ En la tabla \ref{tab:pruRepor_12}, se muestran los casos de pruebas para el \tex
 \label{tab:pruRepor_12}
 \end{table}
 
-Resultado: el ensayo se superó con éxito. En la figura \ref{fig:pruConf_12_res}, se muestran las imágenes obtenidas del \textit{display} para cada paso, se omiten las capturas de los primeros cuatro pasos ya que son iguales a los del \textit{test path} 11.
+Resultado: el ensayo se superó con éxito. En la figura \ref{fig:pruConf_12_res} se muestran las imágenes obtenidas del \textit{display} para cada paso. Se omiten las capturas de los primeros cuatro pasos ya que son iguales a los del \textit{test path} 11.
 
 \begin{figure}[!htpb]
      \centering
@@ -1147,7 +1148,7 @@ Para el camino 13 las condiciones iniciales son las siguientes:
 	\item \textit{Router} Wi-Fi apagado.
 \end{enumerate}
 
-En el \textit{display} se debe leer ``Fallo al enviar reporte al webserv'' para luego mostrar ``Falla Web Server Equipo bloqueado''. En al figura \ref{fig:pruConf_13_res}, se muestran las imágenes obtenidas para este caso.
+En el \textit{display} se debe leer ``Fallo al enviar reporte al webserv'' para luego mostrar ``Falla Web Server Equipo bloqueado''. En al figura \ref{fig:pruConf_13_res} se muestran las imágenes obtenidas para este caso.
 
 \begin{figure}[!htpb]
      \centering
@@ -1167,6 +1168,8 @@ En el \textit{display} se debe leer ``Fallo al enviar reporte al webserv'' para 
         \caption{Resultado del \textit{test path} 13 y 14.}
         \label{fig:pruConf_13_res}
 \end{figure}
+
+\pagebreak
 
 Por otro lado, para el camino 14 las condiciones iniciales son las siguientes:
 \begin{enumerate}

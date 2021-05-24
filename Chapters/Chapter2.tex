@@ -55,7 +55,7 @@ En la figura \ref{fig:FSMSimplificada} se presenta un diagrama de secuencia simp
 \item Inicialización del sistema.
 \item Conexión a red Wi-Fi.
 \item Espera por pulsadores. El operador debe pulsar Configurar para leer los umbrales de configuración desde el servidor web.
-\item Luego, el operador debe pulsar Testear para iniciar la caracterización del transformador. Aquí se verifica que el equipo haya sido configurado previamente ya que no se puede caracterizar un transformador si no cuenta con los umbrales de comparación. En caso de estar configurado se procede a los siguientes pasos.
+\item Luego el operador debe pulsar Testear para iniciar la caracterización del transformador. Aquí se verifica que el equipo haya sido configurado previamente ya que no se puede caracterizar un transformador si no cuenta con los umbrales de comparación. En caso de estar configurado se procede a los siguientes pasos.
 \item Energizar el bobinado primario con 230 V$_{RMS}$ estabilizados (provistos externamente por el cliente).
 \item Medir:
 \begin{itemize}
@@ -120,7 +120,7 @@ A continuación se enumeran los requerimientos consensuados con el cliente:
 	\item El dispositivo debe permitir que se configuren los umbrales mínimos y máximos para los parámetros medidos. 
 	\item Los valores a configurar deben ser adquiridos solo por Wi-Fi, no se admite configuración local por teclado.
 	\item El dispositivo debe generar una confirmación de aceptación o rechazo del transformador en ensayo basado en los umbrales mínimos y máximos preseteados.
-	\item El dispositivo, luego de cada ensayo, independientemente del resultado, debe imprimir una etiqueta con la siguiente información:
+	\item El dispositivo luego de cada ensayo, independientemente del resultado, debe imprimir una etiqueta con la siguiente información:
 		\begin{enumerate}
 		\item Número de partida del transformador ensayado.
 		\item Condición de aceptado o rechazado.
@@ -148,12 +148,12 @@ A continuación se enumeran los requerimientos consensuados con el cliente:
 		\item El dispositivo debe mostrar los umbrales configurados y los valores de las mediciones actuales.
 		\item Los valores de los umbrales configurados deberán permanecer en el \textit{display} durante el ensayo.
 		\item El dispositivo debe mostrar los valores medidos del transformador ensayado luego de cada medición.
-		\item Luego de finalizado el ensayo, se debe mostrar un mensaje que indique que la información se ha enviado al servidor web y mantenerse el dispositivo bloqueado hasta que se haya recibido la respuesta del servidor.
+		\item Luego de finalizado el ensayo se debe mostrar un mensaje que indique que la información se ha enviado al servidor web y mantenerse el dispositivo bloqueado hasta que se haya recibido la respuesta del servidor.
 		\end{enumerate}
 	\item Sobre el \textit{buzzer}:
 		\begin{enumerate}
 		\item El dispositivo debe emitir un solo sonido de 0,5 segundos de duración para confirmar la aceptación del transformador.
-		\item El dispositivo debe emitir un sonido de repetición de 5 ciclos de 0,5 segundos de duración, con pausas de 0,5 segundos para confirmar el rechazo del transformador.
+		\item El dispositivo debe emitir un sonido de repetición de 5 ciclos de 0,5 segundos de duración con pausas de 0,5 segundos para confirmar el rechazo del transformador.
 		\end{enumerate}		
 	\end{enumerate}
 
@@ -282,7 +282,7 @@ Para monitorear las corrientes del bobinado primario y secundario se utilizó el
 	\label{fig:ZMCT103C}
 \end{figure}
 
-Este módulo facilita el monitoreo de corriente alternas de hasta 5 A$_{RMS}$. Está basado en el transformador de corriente de alta precisión ZMCT103C de la empresa Qingxian Zeming Langxi Electronic \citep{ZMCT103C_b}. El módulo es similar al módulo sensor de tensión presentado en la sección \ref{sec:secZMPT101B}. La corriente de salida del transformador de corriente pasa por una resistencia serie (\textit{shunt}) y luego es acondicionada por los amplificadores operaciones integrados en el LM358 \citep{LM358}. La única diferencia entre el módulo sensor de corriente y el de tensión, es que el primero entrega una tensión alterna con valor medio cero, es decir, sin componente de continua. Esto último hace necesario alguna modificación adicional del módulo para entregar una tensión que sea siempre positiva.
+Este módulo facilita el monitoreo de corriente alternas de hasta 5 A$_{RMS}$. Está basado en el transformador de corriente de alta precisión ZMCT103C de la empresa Qingxian Zeming Langxi Electronic \citep{ZMCT103C_b}. El módulo es similar al módulo sensor de tensión presentado en la sección \ref{sec:secZMPT101B}. La corriente de salida del transformador de corriente pasa por una resistencia serie (\textit{shunt}) y luego es acondicionada por los amplificadores operaciones integrados en el LM358 \citep{LM358}. La única diferencia entre el módulo sensor de corriente y el de tensión es que el primero entrega una tensión alterna con valor medio cero, es decir, sin componente de continua. Esto último hace necesario alguna modificación adicional del módulo para entregar una tensión que sea siempre positiva.
 
 Especificaciones técnicas del módulo: 
 \begin{itemize}
@@ -333,7 +333,7 @@ El protocolo está formado por comandos y parámetros asociados a estos comandos
 \toprule
 \textbf{ASCII (HEX)} & \textbf{Tipo}     & \textbf{Descripción}\\
 \midrule
-SOH (0x01)  & Comando inmediato          & \begin{tabular}[c]{@{}c@{}}Cuando la impresora recibe un comando inmediato, \\interrumpe su operación actual y pasa a ejecutarlo. \\Ejemplos: reinicio de la impresora, \\pedido de estado de la impresora.\end{tabular}                         \\ \hline
+SOH (0x01)  & Comando inmediato          & \begin{tabular}[c]{@{}c@{}}Cuando la impresora recibe un comando inmediato \\interrumpe su operación actual y pasa a ejecutarlo. \\Ejemplos: reinicio de la impresora, \\pedido de estado de la impresora.\end{tabular}                         \\ \hline
 STX (0x02)  & Comando de sistema          & \begin{tabular}[c]{@{}c@{}}Es el tipo de comando más comúnmente utilizado. \\Ejemplos: configurar el modo de trabajo métrico o \\imperial, tipo de alineación del texto a imprimir, indica el \\inicio y fin del texto a imprimir, etc.\end{tabular} \\ \hline
 ESC (0x1B)  & \begin{tabular}[c]{@{}c@{}}Comando de carga de\\fuente \end{tabular}& \begin{tabular}[c]{@{}c@{}}Este comando es utilizado para cargar una nueva fuente. \\Generalmente es utilizado por programas\\ específicos para la creación de fuentes.\end{tabular}\\ 
 \bottomrule
@@ -366,7 +366,7 @@ En la tabla \ref{tab:printercmdInmediatos} se muestran los comandos inmediatos m
 \label{tab:printercmdInmediatos}
 \end{table}
 
-En el caso del comando \textless{}SOH\textgreater{}A\textless{}CR\textgreater{}, la respuesta de la impresora es una cadena del tipo ``YYNYYNYY\textless{}CR\textgreater{}'', donde cada carácter 'Y' o 'N' se corresponde con los caracteres ``abcdefgh\textless{}CR\textgreater{}'' de la tabla \ref{tab:printercmdInmediatos}. Para poder imprimir, la impresora debe devolver la cadena ``YYYYYYYY\textless{}CR\textgreater{}'' la cual indica que no tiene errores ni está ocupada con otra tarea.
+En el caso del comando \textless{}SOH\textgreater{}A\textless{}CR\textgreater{} la respuesta de la impresora es una cadena del tipo ``YYNYYNYY\textless{}CR\textgreater{}'', donde cada carácter 'Y' o 'N' se corresponde con los caracteres ``abcdefgh\textless{}CR\textgreater{}'' de la tabla \ref{tab:printercmdInmediatos}. Para poder imprimir, la impresora debe devolver la cadena ``YYYYYYYY\textless{}CR\textgreater{}'' la cual indica que no tiene errores ni está ocupada con otra tarea.
 
 \subsubsection{Comandos de sistema}
 
@@ -407,7 +407,7 @@ En el ejemplo de la tabla \ref{tab:printercmdSystem} se imprime la etiqueta most
 	\label{fig:label_ej}
 \end{figure}
 
-Se pueden enviar varias líneas a imprimir en un solo comando, en este caso, para indicar el fin del texto se debe enviar E\textless{}CR\textgreater.
+Se pueden enviar varias líneas a imprimir en un solo comando, en este caso para indicar el fin del texto se debe enviar E\textless{}CR\textgreater.
 
 \subsection{Módulo adaptador RS-232}
 \label{subsec:Mod232}
@@ -502,7 +502,7 @@ Para poder conmutar las tensiones aplicadas a los bobinados del transformador ba
 \subsubsection{Módulo de alimentación}
 \label{subsubsec:ModAlim}
 
-El dispositivo diseñado debe ser alimentado desde la red eléctrica de Argentina (220 V$_{RMS}$ - 50 hz) para tal fin, se utilizó la fuente conmutada mostrada en la figura \ref{fig:fte}.
+El dispositivo diseñado debe ser alimentado desde la red eléctrica de Argentina (220 V$_{RMS}$ - 50 hz), para tal fin se utilizó la fuente conmutada mostrada en la figura \ref{fig:fte}.
 
 \begin{figure}[htpb]
 	\centering
@@ -511,7 +511,7 @@ El dispositivo diseñado debe ser alimentado desde la red eléctrica de Argentin
 	\label{fig:fte}
 \end{figure}
 
-Especificaciones técnicas\footnote{\url{https://articulo.mercadolibre.com.ar/MLA-700576819-fuente-aislada-switching-220v-5v-700ma-35w-20off-nut-_JM\#reco_item_pos=2&reco_backend=machinalis-v2p-pdp-boost-v2&reco_backend_type=low_level&reco_client=vip-v2p&reco_id=90222827-7627-46cb-9f2b-78620eec7ea2}}:
+Especificaciones técnicas tomadas de la pagina web del vendedor ya que no se pudieron encontrar los datos del fabricante del módulo:
 \begin{itemize}
 \item Tensión de entrada: 85 a 265 V$_{RMS}$ 50 hz.
 \item Corriente de entrada: 0,0273 A (110 V$_{RMS}$) y 0,014 A (220 V$_{RMS}$).
@@ -525,4 +525,4 @@ Especificaciones técnicas\footnote{\url{https://articulo.mercadolibre.com.ar/ML
 \end{itemize}
 
 
-
+% \footnote{\url{https://articulo.mercadolibre.com.ar/MLA-700576819-fuente-aislada-switching-220v-5v-700ma-35w-20off-nut-_JM\#reco_item_pos=2&reco_backend=machinalis-v2p-pdp-boost-v2&reco_backend_type=low_level&reco_client=vip-v2p&reco_id=90222827-7627-46cb-9f2b-78620eec7ea2}}

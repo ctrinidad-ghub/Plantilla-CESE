@@ -15,40 +15,32 @@
 
 Se desarrolló e implementó satisfactoriamente un equipo casi autónomo capaz de caracterizar transformadores de baja tensión. Para llevar a cabo el trabajo se partió de requerimientos consensuados con el cliente Iris Tecnología S.R.L.. El desarrollo y las pruebas necesarias para la obtención del equipo final fueron realizadas siguiendo la planificación inicial y todos los requerimientos pudieron ser cumplidos con éxito.
 
+Se puede destacar que no solo se cumplieron con los requerimientos iniciales del cliente, sino que además, se incluyeron características adicionales como un mecanismo que posibilita ver los valores medidos en el \textit{display} durante el ensayo y brinda el acceso a un método de calibración de las entradas analógicas. Esto no fue pedido por el cliente pero se decidió incluirlo para facilitar el mantenimiento futuro del equipo.
+
 Algunos de los factores que llevaron al éxito del trabajo fueron:
 \begin{itemize}
 \item La temprana definición de requerimientos claros con el cliente.
-\item La utilización de módulos de hardware ya armados que resolvían cuestiones de hardware complejas. Los sensores de corriente y tensión son un ejemplo de esto.
+\item La utilización de módulos de hardware ya armados que resolvían cuestiones de desarrollo complejas y que no estaban emparentadas con la carrera. Los sensores de corriente y tensión son un ejemplo de esto.
 \item Utilizar una placa universal en vez de desarrollar y fabricar una placa de circuito impreso tradicional. Esto aceleró enormemente el desarrollo y pruebas de software.
-\item El desarrollo de pruebas en etapas tempranas del desarrollo, sobre \textit{protoboard}, montados en las base de madera y gabinetes final. Esto proporciono una gran flexibilidad y permitio adquirir mucha experiencia que fue muy util en el armado del gabinete. Un ejempl de esto es la districicion de modulos de hardware que se pudo pensar con la base de madera y cuando se armo el gabinete ya estaba casi resuelto.
+\item El desarrollo del hardware en etapas de \textit{protoboard}, montado en la base de madera y gabinete final. Esto proporcionó una gran flexibilidad y permitió adquirir experiencia que fue muy útil en el armado del gabinete. Un ejemplo de esto es la distribución de los módulos de hardware que se desarrolló con la base de madera y cuando se pasó al armado del gabinete ya se encontraba mayormente resuelto.
 \end{itemize}
 
-
-
-
-
-
-de los cuales, algunos de ellos ofrecían un alto riesgo como la capacidad de utilizar una impresora con las caracteristicas que el cliente des
-
-
 Cocimientos adquiridos en la carrera aplicados al trabajo:
-
-Gestión de Proyectos: la elaboración del plan de proyecto ayudo organizar y pulir los requerientos para luego dar lugar a un trabjo realizable en tiempo y forma.
-Protocolos de Comunicación: en esta materia se desarrollo el módulo utilizado para el control del display. Ademas, se estudio realizo una introduccion al protocolo Wi-Fi que fue de gran utilidad.
-
-Ingeniería de Software en Sistemas Embebidos: proporciono el conocimiento para desarrollar la arquitectura de software utilizada en el trabajo, asi como el uso de Git y el de DoxyGen.
-
-Sistemas operativos de tiempo real 1 y 2: fueron de las materias mas importantes para el desarrollo del trabajo. En estas materias se sentaron las bases para el desarrollo de aplicaciones sobre FreeRTOS, que es la base sobre la cual se desarrolló todo el proyecto.
-
-Testing de software embibido: fue de gran utilidad para la realización de las pruebas de integración utilizando la metodología \textit{State transition testing} (STT)
-
-Diseño de Circuitos Impresos: aportó al uso de la herramienta libre KiCad y los criterios basicos para la distribucion de componentes en la placa universal.
-
-Desarrollo de aplicaciones en sistemas operativos de propósito general: se estudio la interaccion con API REST a traves del del protocolo HTTP, esto fue de vital importancia ya que el servidor web del cliente esta basado en esta filosofia de trabajo.
+\begin{itemize}
+\item Gestión de proyectos: la elaboración del plan de proyecto ayudó a organizar y pulir los requerimientos para luego dar lugar a un trabajo realizable en tiempo y forma.
+\item Protocolos de comunicación: en esta materia se desarrolló el módulo utilizado para el control del \textit{display}. Además, se presentó una introducción al protocolo Wi-Fi que fue de gran utilidad.
+\item Ingeniería de software en sistemas embebidos: proporcionó el conocimiento para desarrollar la arquitectura de software utilizada en el trabajo, así como el uso de Git y Doxygen.
+\item Sistemas operativos de tiempo real 1 y 2: fueron de las materias más importantes para el desarrollo del trabajo. En estas materias se estudió el desarrollo de aplicaciones sobre FreeRTOS que es la base sobre la cual se desarrolló todo el proyecto.
+\item Testing de software embebido: fue de gran utilidad para la realización de las pruebas de integración por medio de la metodología \textit{State transition testing} (STT).
+\item Diseño de circuitos impresos: aportó al uso de la herramienta libre KiCad y los criterios básicos para la distribución de componentes utilizados en la placa universal.
+\item Desarrollo de aplicaciones en sistemas operativos de propósito general: se estudió la interacción con una API REST a través del protocolo HTTP, esto fue de vital importancia ya que el servidor web del cliente está basado en esta arquitectura.
+\end{itemize}
 
 %----------------------------------------------------------------------------------------
 %	SECTION 2
 %----------------------------------------------------------------------------------------
 \section{Próximos pasos}
 
-Como mejoras a futuro se puede pensar en pasar de la placa universal a una placa de circuito impreso que incluya todos los módulos. Esto le proporcionaria al equipo una mayor robustez ademas de ocupar menos espacio.
+Esto dispositivo fue concebido por parte del cliente como una prueba de concepto para una herramienta que permita mejorar y acelerar los ensayos en transformadores. Una vez que el cliente logre validar y perfeccionar su procedimiento con esta nueva herramienta, el próximo paso sería pasar de la placa universal a una placa de circuito impreso que incluya todos los módulos de hardware. Esto le proporcionaría al equipo una mayor robustez además de ser menos espacioso.
+
+Otro paso importante sería la mejora de las herramientas de calibración incluidas en el proyecto, la cual debería estar implementada en línea con el nuevo hardware desarrollado.
