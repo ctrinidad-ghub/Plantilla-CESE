@@ -12,14 +12,14 @@ En la figura \ref{fig:diagBloques} se muestra el diagrama en bloques simplificad
 
 \begin{itemize}
 \item Módulo ESP32 con Wi-Fi integrado.
-\item Bloques de acondicionamiento de señal y actuación para el bobinado primario y secundario.
+\item Bloques de acondicionamiento de señal y actuación para los bobinados primario y secundario.
 \item Interfaz de usuario: pulsadores, \textit{display} y \textit{buzzer}.
 \item Interfaz serie para impresora.
 \item \textit{Switch} de seguridad. Se utiliza para indicar que la tapa de seguridad ha sido removida y el operario puede quedar expuesto a altas tensiones.
 \item Fuente de alimentación.
 \end{itemize}
 
-El trabajo desarrollado tiene como fin determinar si un transformador dado es apto o no para ser utilizado en determinados equipos. Para tal fin, se configuran umbrales de comparación por medio de una comunicación HTTP a un servidor web y se procede a compararlos contra mediciones realizadas sobre el transformador. Una vez realizadas las comparaciones, los resultados del ensayo se muestran localmente por medio de un \textit{display}. Adicionalmente, los resultados y las mediciones realizadas son enviadas al servidor web del cliente utilizando el protocolo HTTP. Por otro lado, se cuenta con una impresora la cual imprime una etiqueta que permite la trazabilidad del transformador.
+El trabajo desarrollado tiene como fin determinar si un transformador dado es apto o no para ser utilizado en determinados equipos. Para tal fin, se configuran umbrales de comparación por medio de una comunicación HTTP a un servidor web y se procede a compararlos contra mediciones realizadas sobre el transformador. Una vez realizadas las comparaciones, los resultados del ensayo se muestran localmente por medio de un \textit{display}. Adicionalmente, los resultados y las mediciones realizadas son enviadas al servidor web del cliente utilizando el protocolo HTTP. Por otro lado, se cuenta con una impresora de la cual se obtiene una etiqueta que permite la trazabilidad del transformador.
 
 Todo el dispositivo es controlado por solo tres pulsadores: Testear, Configurar y Cancelar.
 
@@ -73,11 +73,11 @@ En la figura \ref{fig:FSMSimplificada} se presenta un diagrama de secuencia simp
 \end{itemize}
 \item Desenergizar el bobinado secundario.
 \item Comparar los valores medidos con los umbrales configurados previamente y determinar si el transformador es aceptado o rechazado.
-\item Reportar los valores medidos y los resultados obtenidos al:
+\item Reportar los valores medidos y los resultados obtenidos:
 \begin{itemize}
-	\item Servidor web.
-	\item En el \textit{display} local.
-	\item Imprimir una etiqueta.
+	\item Enviar al servidor web.
+	\item Mostrar en el \textit{display} local.
+	\item Imprimir la etiqueta.
 \end{itemize}
 \end{enumerate}
 
@@ -93,8 +93,8 @@ A continuación se enumeran los requerimientos consensuados con el cliente:
 	\item El dispositivo debe ser capaz de conmutar las tensiones primarias y secundarias.
 	\item El dispositivo debe tener un \textit{display} LCD alfanumérico de 20x4 caracteres.
 	\item El dispositivo debe tener una interfaz Wi-Fi.
-	\item El dispositivo debe tener una interfaz RS-232 capaz de manejar impresoras series.
-	\item El dispositivo debe alimentarse desde la red eléctrica Argentina 220 V$_{RMS}$/50 hz, debiendo proveerse todas las alimentaciones a los diferentes módulos de hardware.
+	\item El dispositivo debe tener una interfaz RS-232 capaz de manejar impresoras con puerto serie.
+	\item El dispositivo debe alimentarse desde la red eléctrica Argentina 220 V$_{RMS}$/50 Hz, debiendo proveerse todas las alimentaciones a los diferentes módulos de hardware.
 	\item El dispositivo debe poseer un \textit{switch} para indicar que la tapa de seguridad ha sido removida.
 	\item El dispositivo debe poseer tres pulsadores nombrados Configurar, Testear y Cancelar.
 	\item El dispositivo debe poseer un \textit{buzzer}.
@@ -103,23 +103,23 @@ A continuación se enumeran los requerimientos consensuados con el cliente:
 	\begin{enumerate}
 	\item Bobinado primario:
 		\begin{enumerate}
-		\item Rango tensión: 100 – 240 V$_{RMS}$.
-		\item Rango corriente: 0 – 800 mA$_{RMS}$.
+		\item Rango de tensión: 100 – 240 V$_{RMS}$.
+		\item Rango de corriente: 0 – 800 mA$_{RMS}$.
 		\end{enumerate}
 	\item Bobinado secundario:
 		\begin{enumerate}
-		\item Rango tensión: 0 – 30 V$_{RMS}$.
-		\item Rango corriente: 0 – 1500 mA$_{RMS}$.
+		\item Rango de tensión: 0 – 30 V$_{RMS}$.
+		\item Rango de corriente: 0 – 1500 mA$_{RMS}$.
 		\end{enumerate}
-	\item Precisión en la medición de tensión: mejor al 1,5\% (puede variar en base a lo que se pueda conseguir en el mercado).
-	\item Precisión en la medición de corriente: mejor al 4\% (puede variar en base a lo que se pueda conseguir en el mercado).
+	\item Precisión en la medición de tensión: mejor al 1,5\% (puede variar en base al módulo o componente que se pueda conseguir en el mercado).
+	\item Precisión en la medición de corriente: mejor al 4\% (puede variar en base al módulo o componente que se pueda conseguir en el mercado).
 	\end{enumerate}
 \subsection{Requerimientos funcionales}
 \label{subsec:ReqFun}
 	\begin{enumerate}
 	\item El dispositivo debe permitir que se configuren los umbrales mínimos y máximos para los parámetros medidos. 
 	\item Los valores a configurar deben ser adquiridos solo por Wi-Fi, no se admite configuración local por teclado.
-	\item El dispositivo debe generar una confirmación de aceptación o rechazo del transformador en ensayo basado en los umbrales mínimos y máximos preseteados.
+	\item El dispositivo debe generar una confirmación de aceptación o rechazo del transformador bajo ensayo basado en los umbrales mínimos y máximos preseteados.
 	\item El dispositivo luego de cada ensayo, independientemente del resultado, debe imprimir una etiqueta con la siguiente información:
 		\begin{enumerate}
 		\item Número de partida del transformador ensayado.
@@ -139,9 +139,9 @@ A continuación se enumeran los requerimientos consensuados con el cliente:
 	\begin{enumerate}
 	\item Sobre la funcionalidad de los pulsadores:
 		\begin{enumerate}
-		\item Configurar: al pulsar este pulsador el dispositivo debe generar el comando GET para solicitar al servidor web los parámetros de configuración del dispositivo a través de Wi-Fi.
-		\item Testear: al pulsar este pulsador el dispositivo debe iniciar la secuencia de testeo.
-		\item Cancelar: al pulsar este pulsador la secuencia de testeo en curso debe quedar abortada.
+		\item Configurar: al presionar este pulsador el dispositivo debe generar el comando GET para solicitar al servidor web los parámetros de configuración del dispositivo a través de Wi-Fi.
+		\item Testear: al presionar este pulsador el dispositivo debe iniciar la secuencia de testeo.
+		\item Cancelar: al presionar este pulsador la secuencia de testeo en curso debe quedar abortada.
 		\end{enumerate}
 	\item Sobre la funcionalidad del \textit{display} LCD:
 		\begin{enumerate}
@@ -179,13 +179,13 @@ Para este trabajo se utilizó el kit de desarrollo ESP32-DevKitC \citep{ESP32} d
 De las especificaciones del módulo ESP32-WROOM-32 se pueden destacar las siguientes:
 \begin{itemize}
 \item Procesador dual core Xtensa® LX6 de 32 bits.
-\item Velocidad de reloj de hasta 240 Mhz.
+\item Velocidad de reloj de hasta 240 MHz.
 \item 520 KB de RAM.
 \item 4 MB SPI flash.
 \item Wi-Fi integrado con posibilidad de trabajar como AP (\textit{Access Point}) y SM (\textit{Station Mode}).
 \item Bluetooth V4.2.
 \item 36 GPIO.
-\item Hasta 18 conversores anologico-digital (ADC) de 12 bits de resolución.
+\item Hasta 18 conversores analógico-digital (ADC) de 12 bits de resolución.
 \item 2 conversores digital-analógico (DAC) de 8 bits de resolución.
 \item 3 UART.
 \item 2 canales I2C.
@@ -216,7 +216,7 @@ A continuación se listan algunas de las características más destacables del e
 \item Soporta librerías para Wi-Fi \citep{ESPIDF:WiFi} y Bluetooth \citep{ESPIDF:bluetooth}.
 \item Soporta varios \textit{stacks} de redes, por ejemplo TCP/IP.
 \item Soporta varias implementaciones de protocolos (DHCP cliente y servidor, HTTP cliente y servidor, MQTT, etc) \citep{ESPIDF:PRO}.
-\item Soporta extensiones para Eclipse \citep{ESPIDF:ECLIPSE} y Visual Code \citep{ESPIDF:VC}.
+\item Soporta extensiones para Eclipse \citep{ESPIDF:ECLIPSE} y Visual Studio Code \citep{ESPIDF:VC}.
 \item Está basado en CMake \citep{ESPIDF:CMake}.
 \end{itemize}
 
@@ -225,7 +225,7 @@ El entorno ESP-IDF no es parte del proyecto del usuario sino que debe ser enlaza
 \subsection{ESP-Touch y SmartConfig}
 \label{sec:ESPTouch}
 
-Espressif Systems provee la aplicación móvil ESP-Touch \citep{ESPTOUCH} la cual puede ser usada con la librería SmartConfig \citep{SMARTCONFIG} para configurar las credenciales de Wi-Fi en equipos que no posean una interfaz de usuario acorde para insertar esta información. En la figura \ref{fig:EspTouch} se muestra la interfaz de la aplicación ESP-Touch.
+Espressif Systems provee la aplicación móvil ESP-Touch \citep{ESPTOUCH}, la cual puede ser usada con la librería SmartConfig \citep{SMARTCONFIG} para configurar las credenciales de Wi-Fi en equipos que no posean una interfaz de usuario acorde para insertar esta información. En la figura \ref{fig:EspTouch} se muestra la interfaz de la aplicación ESP-Touch.
 
 \begin{figure}[htpb]
 	\centering
@@ -248,11 +248,11 @@ Para monitorear las tensiones del bobinado primario y secundario se utilizó el 
 	\label{fig:ZMPT101B}
 \end{figure}
 
-Este módulo es un sensor de tensión capaz de medir tensiones alternas de línea de 220 V$_{RMS}$ de forma aislada. En la figura \ref{fig:ZMPT101B_waves} se puede observar la tensión de entrada (Vin) y la tensión de salida (Vout) entregada por el módulo. El módulo provee una tensión de salida la cual está montada sobre un nivel continua igual a la mitad de la tensión de alimentación, esto ayuda a procesar la señal directamente con un ADC sin la necesidad de fuentes de alimentación negativas.
+Este módulo es un sensor de tensión capaz de medir tensiones alternas de línea de 220 V$_{RMS}$ de forma aislada. En la figura \ref{fig:ZMPT101B_waves} se puede observar la tensión de entrada (Vin) y la tensión de salida (Vout) entregada por el módulo. El módulo provee una tensión de salida, la cual está montada sobre un nivel continua igual a la mitad de la tensión de alimentación, esto ayuda a procesar la señal directamente con un ADC sin la necesidad de fuentes de alimentación con tensiones negativas.
 
 \begin{figure}[htpb]
 	\centering
-	\includegraphics[scale=1.2]{./Figures/ZMPT101B_waves.png}
+	\includegraphics[scale=1.1]{./Figures/ZMPT101B_waves.png}
 	\caption{Ondas de entrada (Vin) y salida (Vout) del módulo @ Vcc = 5 V.}
 	\label{fig:ZMPT101B_waves}
 \end{figure}
@@ -266,14 +266,14 @@ Especificaciones técnicas del módulo:
 \item Tensión de alimentación (Vcc): 5-30 V.
 \item Tensión alterna de entrada máxima: 250 V$_{RMS}$.
 \item Tensión de salida: onda senoidal 2,5 V$_{PICO}$ @ Vcc = 5 V.
-\item Valor medio de la tensión salida: 2,5 V @ Vcc = 5 V.
+\item Valor medio de la tensión de salida: 2,5 V @ Vcc = 5 V.
 \item Dimensiones: 5 cm x 2 cm x 2,4 cm.
 \end{itemize}
 
 \section{Sensor de corriente}
 \label{sec:secZMCT103C}
 
-Para monitorear las corrientes del bobinado primario y secundario se utilizó el módulo de figura \ref{fig:ZMCT103C}.
+Para monitorear las corrientes del bobinado primario y secundario se utilizó el módulo que se observa en la figura \ref{fig:ZMCT103C}.
 
 \begin{figure}[htpb]
 	\centering
@@ -282,14 +282,14 @@ Para monitorear las corrientes del bobinado primario y secundario se utilizó el
 	\label{fig:ZMCT103C}
 \end{figure}
 
-Este módulo facilita el monitoreo de corriente alternas de hasta 5 A$_{RMS}$. Está basado en el transformador de corriente de alta precisión ZMCT103C de la empresa Qingxian Zeming Langxi Electronic \citep{ZMCT103C_b}. El módulo es similar al módulo sensor de tensión presentado en la sección \ref{sec:secZMPT101B}. La corriente de salida del transformador de corriente pasa por una resistencia serie (\textit{shunt}) y luego es acondicionada por los amplificadores operaciones integrados en el LM358 \citep{LM358}. La única diferencia entre el módulo sensor de corriente y el de tensión es que el primero entrega una tensión alterna con valor medio cero, es decir, sin componente de continua. Esto último hace necesario alguna modificación adicional del módulo para entregar una tensión que sea siempre positiva.
+Este módulo facilita el monitoreo de corrientes alternas de hasta 5 A$_{RMS}$. Está basado en el transformador de corriente de alta precisión ZMCT103C de la empresa Qingxian Zeming Langxi Electronic \citep{ZMCT103C_b}. El dispositivo es similar al módulo sensor de tensión presentado en la sección \ref{sec:secZMPT101B}. La corriente de salida del transformador de corriente pasa por una resistencia serie (\textit{shunt}) y luego es acondicionada por los amplificadores operaciones integrados en el LM358 \citep{LM358}. La única diferencia entre el módulo sensor de corriente y el de tensión es que el primero entrega una tensión alterna con valor medio cero, es decir, sin componente de continua. Esto último hace necesario alguna modificación adicional del módulo para entregar una tensión que sea siempre positiva.
 
 Especificaciones técnicas del módulo: 
 \begin{itemize}
 \item Tensión de alimentación (Vcc): 5-30 V.
 \item Corriente de entrada nominal: 5 A$_{RMS}$.
 \item Tensión de salida: onda senoidal 2.5 V$_{PICO}$ @ Vcc = 5 V.
-\item Valor medio de la tensión salida: 0 V @ Vcc = 5 V.
+\item Valor medio de la tensión de salida: 0 V @ Vcc = 5 V.
 \end{itemize}
 
 \section{Impresora}
@@ -357,7 +357,7 @@ En la tabla \ref{tab:printercmdInmediatos} se muestran los comandos inmediatos m
 \toprule
 \textbf{ASCII (HEX)} & \textbf{Descripción} & \multicolumn{1}{c}{\textbf{Respuesta}}\\ 
 \midrule
-\begin{tabular}[c]{@{}c@{}}\textless{}SOH\textgreater{}A\textless{}CR\textgreater\\ (0x01,0x41,0x0D)\end{tabular} & \begin{tabular}[c]{@{}c@{}}Pedido de estado de la impresora.\end{tabular} & \begin{tabular}[c]{@{}l@{}}La respuesta son 8 caracteres 'Y' o 'N' \\mas el carácter \textless{}CR\textgreater{} de final de mensaje.\\ \\ abcdefgh\textless{}CR\textgreater\\ a: Interprete de comandos ocupado\\ b: Falla de papel\\ c: Falla del \textit{Ribbon}\\ d: Imprimiendo lote (se pueden enviar \\varias etiquetas para imprimir)\\ e: Impresora ocupada\\ f: Impresora pausada\\ g: Etiqueta presentada\\ h: Falla interna\end{tabular} \\
+\begin{tabular}[c]{@{}c@{}}\textless{}SOH\textgreater{}A\textless{}CR\textgreater\\ (0x01,0x41,0x0D)\end{tabular} & \begin{tabular}[c]{@{}c@{}}Pedido de estado de la impresora.\end{tabular} & \begin{tabular}[c]{@{}l@{}}La respuesta son 8 caracteres 'Y' o 'N' \\más el carácter \textless{}CR\textgreater{} de final de mensaje.\\ \\ abcdefgh\textless{}CR\textgreater\\ a: Intérprete de comandos ocupado\\ b: Falla de papel\\ c: Falla del \textit{Ribbon}\\ d: Imprimiendo lote (se pueden enviar \\varias etiquetas para imprimir)\\ e: Impresora ocupada\\ f: Impresora pausada\\ g: Etiqueta presentada\\ h: Falla interna\end{tabular} \\
 \begin{tabular}[c]{@{}c@{}}\textless{}SOH\textgreater{}*\textless{}CR\textgreater\\ (0x01,0x2A,0x0D)\end{tabular} & Pedido de reinicio de la impresora                                                                                                                                       & \textless{}XON\textgreater{}R\textless{}CR\textgreater{} \\ 
 \bottomrule
 \hline
@@ -420,7 +420,7 @@ Para comunicar la impresora con la UART del microcontrolador se utilizó el mód
 	\label{fig:rs232}
 \end{figure}
 
-Este módulo está basado en el integrado MAX3232 \citep{MAX3232} y adapta las señales del capa física RS-232 a valores acordes para trabajar con el microcontrolador.
+Este módulo está basado en el integrado MAX3232 \citep{MAX3232} y adapta las señales de la capa física RS-232 a valores acordes para trabajar con el microcontrolador.
 
 \section{Display alfanumérico}
 
@@ -445,7 +445,7 @@ El display cuenta con una interfaz paralela de 8-bits (DB0-7) la cual puede ser 
 \midrule
 RS    & 1 & \begin{tabular}[c]{@{}c@{}}Indica como interpretar los datos en el \textit{bus} de datos DB.\\ 0: Instrucción\\ 1: Datos\end{tabular} \\
 R/W   & 1 & \begin{tabular}[c]{@{}c@{}}0: Operación de lectura\\ 1: Operación de escritura\end{tabular} \\
-EN    & 1 & \begin{tabular}[c]{@{}c@{}}\textit{Enable}: utilizado para indicar que hay \\ datos validos en el \textit{bus} de datos\end{tabular} \\
+EN    & 1 & \begin{tabular}[c]{@{}c@{}}\textit{Enable}: utilizado para indicar que hay \\ datos válidos en el \textit{bus} de datos\end{tabular} \\
 DB    & 8 & \textit{Bus} de datos \\
 \bottomrule
 \hline
@@ -453,7 +453,7 @@ DB    & 8 & \textit{Bus} de datos \\
 \label{tab:display}
 \end{table}
 
-Para utilizar el display se cuenta con 2 tipos de operaciones las cuales se diferencian por el bit de control RS:
+Para utilizar el display se cuenta con 2 tipos de operaciones, las cuales se diferencian por el bit de control RS:
 \begin{itemize}
 \item RS=0: Escribir/leer una instrucción.
 \item RS=1: Escribir/leer un carácter ASCII.
@@ -488,7 +488,7 @@ En esta sección se describe el módulo utilizado como elemento de maniobra para
 \subsubsection{Módulo de relés}
 \label{subsubsec:ModRel}
 
-Para poder conmutar las tensiones aplicadas a los bobinados del transformador bajo ensayo se utilizó el módulo de la figura \ref{fig:reles} . Este módulo está compuesto por 8 relés los cuales pueden ser manejados en forma aislada por el microcontrolador a través de optoacopladores. Este módulo permitió actuar sobre las altas tensiones del transformador bajo ensayo de una manera segura.
+Para poder conmutar las tensiones aplicadas a los bobinados del transformador bajo ensayo se utilizó el módulo de la figura \ref{fig:reles} . Este módulo está compuesto por 8 relés, los cuales pueden ser manejados en forma aislada por el microcontrolador a través de optoacopladores. Este módulo permitió actuar sobre las altas tensiones del transformador bajo ensayo de una manera segura.
 
 \begin{figure}[htpb]
 	\centering
@@ -502,7 +502,7 @@ Para poder conmutar las tensiones aplicadas a los bobinados del transformador ba
 \subsubsection{Módulo de alimentación}
 \label{subsubsec:ModAlim}
 
-El dispositivo diseñado debe ser alimentado desde la red eléctrica de Argentina (220 V$_{RMS}$ - 50 hz), para tal fin se utilizó la fuente conmutada mostrada en la figura \ref{fig:fte}.
+El dispositivo diseñado debe ser alimentado desde la red eléctrica de Argentina (220 V$_{RMS}$ - 50 Hz), para tal fin se utilizó la fuente conmutada mostrada en la figura \ref{fig:fte}.
 
 \begin{figure}[htpb]
 	\centering
@@ -513,7 +513,7 @@ El dispositivo diseñado debe ser alimentado desde la red eléctrica de Argentin
 
 Especificaciones técnicas tomadas de la pagina web del vendedor ya que no se pudieron encontrar los datos del fabricante del módulo:
 \begin{itemize}
-\item Tensión de entrada: 85 a 265 V$_{RMS}$ 50 hz.
+\item Tensión de entrada: 85 a 265 V$_{RMS}$ 50 Hz.
 \item Corriente de entrada: 0,0273 A (110 V$_{RMS}$) y 0,014 A (220 V$_{RMS}$).
 \item Tensión de salida: 5 V +/- 0,2 V.
 \item Corriente de salida: 700 mA (800 mA$_{PICO}$).

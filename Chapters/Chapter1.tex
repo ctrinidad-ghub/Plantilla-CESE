@@ -46,7 +46,7 @@ El transformador está constituido por dos bobinas de material conductor devanad
 
 \footnotetext{Imagen tomada de \url{https://es.wikipedia.org/wiki/Transformador}}
 
-Existen transformadores con más de dos bobinados y diferentes arquitecturas de conexionado, un ejemplo lo constituye el transformador trifásico que está formado por 6 bobinados que pueden ser conectados en estrella o triangulo.
+Existen transformadores con más de dos bobinados y diferentes arquitecturas de conexionado, un ejemplo lo constituye el transformador trifásico que está formado por 6 bobinados que pueden ser conectados en estrella o triángulo.
 
 Actualmente, se pueden encontrar una gran variedad de transformadores para infinidad de aplicaciones. Una clasificación posible es la siguiente \citep{TRAFO_APL}:
 
@@ -78,7 +78,7 @@ En las siguientes secciones se brinda una introducción a los ensayos mencionado
 
 El ensayo de vacío es un método utilizado para determinar diversos parámetros del transformador mediante pruebas realizadas sin aplicar carga \citep{TRAFO_VACIO}. En la figura \ref{fig:figEnsayoVacio} se muestra el conexionado para este ensayo.
 
-En este ensayo se alimenta el bobinado primario con la tensión nominal, se deja el secundario sin carga y se debe medir la tensión en los bornes del primario, la tensión en los bornes del secundario, la corriente en el devanado primario y la potencia del primario. 
+En este ensayo se alimenta el bobinado primario con la tensión nominal, se deja el secundario sin carga y se debe medir la tensión en los bornes del primario, la tensión en los bornes del secundario, la corriente que circula a través del devanado primario y la potencia absorbida. 
 
 \begin{figure}[htpb]
 	\centering
@@ -97,7 +97,7 @@ El ensayo de cortocircuito permite determinar la impedancia de cortocircuito o i
 	\label{fig:figEnsayoCorto}
 \end{figure}
 
-En este ensayo se alimenta el bobinado primario con una tensión muy reducida, se coloca un cortocircuito en el bobinado secundario y se debe medir la tensión resultante en los bornes del primario, la corriente en el bobinado secundario, la corriente en el devanado primario y la potencia del primario. Para conseguir los valores reducidos de tensión es necesario un sistema de tensión ajustable como puede ser un autotransformador regulable. La tensión aplicada en el primario debe ser tal que haga circular la corriente nominal por el bobinado secundario.
+En este ensayo se alimenta el bobinado primario con una tensión muy reducida, se coloca un cortocircuito en el bobinado secundario y se debe medir la tensión resultante en los bornes del primario, la corriente que circula a través de los devanados primario y secundario y la potencia absorbida. Para conseguir los valores reducidos de tensión es necesario un sistema de tensión ajustable como puede ser un autotransformador regulable. La tensión aplicada en el primario debe ser tal que haga circular la corriente nominal por el bobinado secundario.
 
 \subsubsection{Ensayo de aislamiento}
 
@@ -150,7 +150,7 @@ Interfaz USB                                               & x                  
 \section{Motivación}
 Los transformadores son una parte esencial en muchos campos de la industria, son parte fundamental en el sistema de distribución de energía, así como en equipos que son alimentados desde la red. Por esta razón, es de vital importancia su estudio y establecer métodos para conocer su estado antes de su instalación y durante su servicio.
 
-El transformador debe estar en óptimas condiciones al momento de su instalación para evitar posibles fallas del sistema donde es instalado. Un transformador cuyos parámetros esenciales están fuera de especificación puede generar un mal funcionamiento o inclusive sacar de servicio al sistema. Como ejemplo podemos citar los sistemas de distribución de energía eléctrica ya que deben ser sistemas de muy alta disponibilidad, donde un fallo en los componentes de estos sistemas puede devenir en la caída parcial o total del sistema distribución.
+El transformador debe estar en óptimas condiciones al momento de su instalación para evitar posibles fallas del sistema donde es instalado. Un transformador cuyos parámetros esenciales están fuera de especificación puede generar un mal funcionamiento o inclusive sacar de servicio al sistema. Como ejemplo podemos citar los sistemas de distribución de energía eléctrica ya que estos deben ser de muy alta disponibilidad, donde un fallo en sus componentes puede devenir en la caída parcial o total del sistema distribución.
 
 En el caso particular de la empresa Iris Tecnología S.R.L. que fabrica equipos electromédicos, necesita conocer si los transformadores provistos son aptos para ser utilizados en sus equipos. Para ello, la empresa cuenta con un sistema de gestión de calidad basado en la norma ISO13485:2016.
 
@@ -164,7 +164,7 @@ La posibilidad de contar con un equipamiento que con una mínima intervención d
 
 \subsection{Objetivos del trabajo}
 
-El objetivo de este trabajo fue el desarrollo de un prototipo de hardware y software que permite automatizar el proceso de caracterización de transformadores de baja tensión utilizado. El prototipo desarrollado es casi autónomo, es decir, solo requiere una mínima intervención del operador para funcionar. Por otro lado, los resultados de la caracterización son enviados a un servidor web proporcionado por el cliente, mostrados en un \textit{display} local e impresos en una etiqueta.
+El objetivo de este trabajo fue el desarrollo de un prototipo de hardware y software que permite automatizar el proceso de caracterización de transformadores de baja tensión utilizados. El prototipo desarrollado es casi autónomo, es decir, solo requiere una mínima intervención del operador para funcionar. Por otro lado, los resultados de la caracterización son enviados a un servidor web proporcionado por el cliente, mostrados en un \textit{display} local e impresos en una etiqueta.
 
 \subsection{Alcance del trabajo}
 El presente trabajo tiene como alcance:
@@ -178,7 +178,7 @@ El presente trabajo tiene como alcance:
 Queda excluido del alcance de este trabajo:
 \begin{itemize}
 \item El desarrollo de circuitos de medición de tensión y/o corriente alterna de precisión. Se acepta la precisión obtenida de módulos comerciales como el ZMPT101B.
-\item El desarrollo de fuentes de tensión alterna de precisión para alimentar los transformadores en ensayo.
+\item El desarrollo de fuentes de tensión alterna de precisión para alimentar los transformadores bajo ensayo.
 \item El desarrollo de una aplicación web desde la cual interactuar por Wi-Fi con el módulo.
 \item El desarrollo del servidor web o API de colección de datos.
 \item El desarrollo de un prototipo de fabricación escalable que cumpla con todas las certificaciones necesarias.

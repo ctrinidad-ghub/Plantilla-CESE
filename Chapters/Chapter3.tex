@@ -68,7 +68,7 @@ Para el conexionado de los elementos del sistema se utilizó una placa universal
 \item Diferentes conectores tipo \textit{header} para el conexionado de los módulos de hardware presentados en el capítulo \ref{Chapter2}.
 \end{itemize}
 
-En la tabla \ref{tab:diagramaPines} se muestra el uso de los pines del kit ESP32-DevKitC. En general, todos los módulos fueron conectados directamente al kit con la excepción de los módulos sensores de tensión y corriente cuyo conexionado requirió divisores resistivos para adaptar los valores de salida de los módulos al rango de excursión del ADC. A su vez, se incluyó en la placa universal una referencia de tensión basada en el integrado TL431 \citep{TL431}, que se explica con más detalle en la sección \ref{subsec:mejorasAnalo}.
+En la tabla \ref{tab:diagramaPines} se muestra el uso de los pines del kit ESP32-DevKitC. En general, todos los módulos fueron conectados directamente al kit con la excepción de los módulos sensores de tensión y corriente cuyo conexionado requirió divisores resistivos para adaptar sus valores de salida al rango de excursión del ADC. A su vez, se incluyó en la placa universal una referencia de tensión basada en el integrado TL431 \citep{TL431}, que se explica con más detalle en la sección \ref{subsec:mejorasAnalo}.
 
 \begin{table}[htpb]
 \centering
@@ -245,7 +245,7 @@ El firmware fue desarrollado por medio de la utilización de buenas prácticas d
 Donde: 
 \begin{itemize}
 \item inc: directorio para ubicar todos los archivos de cabeceras.
-\item sch: directorio con el esquemático de la placa universal en KiCad \citep{KICAD}.
+\item sch: directorio con el diagrama esquemático de la placa universal en KiCad \citep{KICAD}.
 \item src: directorio para ubicar todos los archivos fuentes.
 \item CMakeLists.txt: es el archivo principal que usa CMake para construir el proyecto.
 \item sdkconfig: este archivo contiene la configuración de todos los componentes del proyecto (incluido ESP-IDF).
@@ -279,7 +279,7 @@ Las funciones del bloque se detallan a continuación:
 
 \begin{itemize}
 \item Procesar el estado de los pulsadores Testear y Cancelar para iniciar y/o detener la secuencia de caracterización.
-\item Procesar el estado del pulsador Configurar para leer los umbrales de validación para el transformador en ensayo.
+\item Procesar el estado del pulsador Configurar para leer los umbrales de validación para el transformador bajo ensayo.
 \item Procesar los valores leídos de las tensiones y corrientes de los bobinados primario y secundario.
 \item Procesar el estado del \textit{switch} de la tapa de seguridad.
 \item Generar el comando para alimentar los bobinados.
@@ -457,7 +457,7 @@ En el caso que alguno de los pasos anteriores fallen se transiciona a un pseudoe
 \subsection{Medición de valor eficaz}
 \label{subsec:RMS}
 
-Los monitores de tensión y corriente alterna del bobinado primario y secundario son los bloques encargados de entregarle al controlador principal los valores RMS de dichas variables. Para tal fin, las salidas de los sensores de tensión y corriente presentados en las secciones \ref{sec:secZMPT101B} y \ref{sec:secZMCT103C} luego de pasar por un divisor resistivo acorde y un filtro pasa bajos (RC), son conectadas a cuatro canales del ADC1 del módulo ESP32-WROOM-32 como se muestra en la tabla \ref{tab:diagramaPines}.
+Los monitores de tensión y corriente de los bobinados son los bloques encargados de entregarle al controlador principal los valores RMS de dichas variables. Para tal fin, las salidas de los sensores de tensión y corriente presentados en las secciones \ref{sec:secZMPT101B} y \ref{sec:secZMCT103C} luego de pasar por un divisor resistivo acorde y un filtro pasa bajos (RC), son conectadas a cuatro canales del ADC1 del módulo ESP32-WROOM-32 como se muestra en la tabla \ref{tab:diagramaPines}.
 
 Las rutinas encargadas de leer los valores de los canales del ADC1 y retornar dichos valores eficaces se encuentran en el archivo adc.h. En el código \ref{cod:adc_h} se muestra el archivo de cabecera simplificado. 
 
@@ -495,7 +495,7 @@ En el pseudocódigo mostrado en el código \ref{cod:adc_c} se observa la impleme
 \item \textit{Inter-IC Sound} (I2S): que configurado en el modo ADC/DAC proporciona un periférico DMA para ser usado con el ADC y/o DAC \citep{I2S}.
 \end{itemize}
 
-El código presentado está simplificado para mostrar su operación pero cabe destacar que, además de lo mostrado en el código \ref{cod:adc_c}, se utilizaron diferentes herramientas de FreeRTOS en la la función appAdcStart. Las colas para sincronizar el funcionamiento del DMA con el resto de la función son un ejemplo de ello.
+El código presentado está simplificado para mostrar su operación pero cabe destacar que, además de lo mostrado en el código \ref{cod:adc_c}, se utilizaron diferentes herramientas de FreeRTOS en la función appAdcStart. Las colas para sincronizar el funcionamiento del DMA con el resto de la función son un ejemplo de ello.
 
 \begin{lstlisting}[label=cod:adc_c,caption=Pseudocódigo del módulo adc.c.]
 
@@ -530,7 +530,7 @@ void appAdcStart(rms_t *rms) {
 }
 \end{lstlisting}
 
-Al ingresar a la función appAdcStart se habilita el DMA por medio de la función i2s\_adc\_enable. El próximo paso es barrer los cuatro canales del ADC1 para la cual se utiliza un lazo de tipo \textit{for}. Dentro del lazo la función i2s\_read muestrea el canal del ADC1 seleccionado. Dicha función fue configurada para leer 8 ciclos de la señal de entrada y tomar 128 muestras por cada ciclo, hasta que se realiza esta acción la función permanece bloqueada. Como se miden las variables de la red de energía eléctrica y su periodo es de 20 ms, da un tiempo de medición por canal de 160 ms, tal como se muestra en la ecuación \ref{eq:TMED}.
+Al ingresar a la función appAdcStart se habilita el DMA por medio de la función i2s\_adc\_enable. El próximo paso es barrer los cuatro canales del ADC1 para la cual se utiliza un lazo de tipo \textit{for}. Dentro del lazo la función i2s\_read muestrea el canal del ADC1 seleccionado. Dicha función fue configurada para leer 8 ciclos de la señal de entrada y tomar 128 muestras por cada ciclo, hasta que se realiza esta acción la función permanece bloqueada. Como se miden las variables de la red de energía eléctrica y su período es de 20 ms, da un tiempo de medición por canal de 160 ms, tal como se muestra en la ecuación \ref{eq:TMED}.
 
 \begin{equation}
 	\label{eq:TMED}
@@ -589,7 +589,7 @@ Para iniciar la conexión a la red Wi-Fi, el controlador principal debe llamar a
 En caso de no tener las credenciales de Wi-Fi configuradas u obtener un error al intentar leerlas la función app\_WiFiConnect puede utilizar SmartConfig para intentar adquirirlas desde la aplicación móvil ESP-Touch. Para esto se crea una tarea de FreeRTOS para utilizar las funciones de la librería de SmartConfig. Dentro de la tarea se espera por el evento ESPTOUCH\_DONE que se genera cuando la aplicación ESP-Touch envía las credenciales. Luego de obtener las credenciales se procede a intentar conectar nuevamente por medio del procedimiento explicado en el párrafo anterior. La única diferencia en este caso es que si se logra conectar exitosamente a Wi-Fi, se guardan las nuevas credenciales en memoria no volátil para su posterior reutilización. Por otro lado, la tarea de FreeRTOS creada para administrar el protocolo SmartConfig se borra del sistema al finalizar el procedimiento ya que la acción de generar las credenciales de Wi-Fi es una tarea de un solo uso y carece de sentido tenerla corriendo todo el tiempo.
 
 
-\subsection{Obtención y envió de datos al webserver}
+\subsection{Obtención y envío de datos al webserver}
 
 Como se explicó en los capítulos introductorios, el cliente desarrolló un servidor web donde consultar los valores de comparación de tensiones y corrientes y a donde enviar los valores medidos y los resultados obtenidos. 
 
@@ -703,7 +703,7 @@ typedef struct {
 
 Entre las tareas que el controlador principal debe realizar en la etapa de reporte (sección \ref{subsubsec:EtRep}) se encuentra la impresión de una etiqueta con los resultados del ensayo. Para ello se utilizó la impresora presentada en la sección \ref{sec:Impre} cuyo protocolo se conoce como DPL y fue introducido en la misma sección. En esta sección se explica la implementación de dicho protocolo.
 
-El protocolo DPL fue implementado en el módulo app\_printer.c, en tanto que la capa física del protocolo fue resuelta con el módulo de hardware presentado en la sección \ref{fig:rs232}. Para su manejo se utilizó la librería UART que se encuentra dentro de los controladores de periféricos provisto por el entorno ESP-IDF \citep{ESPIDF:PER}.
+El protocolo DPL fue implementado en el módulo app\_printer.c, en tanto que la capa física del protocolo fue resuelta con el módulo de hardware presentado en la sección \ref{fig:rs232}. Para su manejo se utilizó la librería UART que se encuentra dentro de los controladores de periféricos provistos por el entorno ESP-IDF \citep{ESPIDF:PER}.
 
 Cuando el controlador principal desea imprimir los resultados del ensayo debe llamar a la función \textit{print}. Esta función implementa todos los comandos necesarios para utilizar el protocolo DPL y devuelve el resultado de la impresión. En el código \ref{cod:print_h} se muestran los valores devueltos por la función \textit{print}.
 
@@ -754,11 +754,11 @@ La interfaz local de usuario está formada por los siguientes elementos:
 \item \textit{Display} alfanumérico de 20 caracteres por 4 líneas.
 \end{itemize}
 
-Para trabajar con todos estos módulos se utilizó la librería GPIO que se encuentra dentro de los controladores de periféricos provisto por el entorno ESP-IDF \citep{ESPIDF:PER}.
+Para trabajar con todos estos módulos se utilizó la librería GPIO que se encuentra dentro de los controladores de periféricos provistos por el entorno ESP-IDF \citep{ESPIDF:PER}.
 
 Para el procesamiento de los pulsadores se desarrolló una función para cada uno. Estas funciones deben ser encuestadas (\textit{pulling}) periódicamente para saber el estado de los pulsadores. En el código \ref{cod:app_gpio_h} se muestra el prototipo para el pulsador Cancelar. Adicionalmente, se incorporaron rutinas antirebote (\textit{debouncing}) para todos los pulsadores.
 
-\begin{lstlisting}[label=cod:app_gpio_h,caption=Pseudocódigo del módulo adc.c.]
+\begin{lstlisting}[label=cod:app_gpio_h,caption=Prototipo para el pulsador Cancelar.]
 /**
  * @brief Check if the cancel button was pressed
  * 
